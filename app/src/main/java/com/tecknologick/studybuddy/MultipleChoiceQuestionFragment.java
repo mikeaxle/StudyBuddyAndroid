@@ -1,0 +1,135 @@
+package com.tecknologick.studybuddy;
+
+
+import android.app.Fragment;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import com.tecknologick.studybuddy.Adapters.CustomListAdapter;
+import com.tecknologick.studybuddy.RealmClasses.Question;
+
+
+public class MultipleChoiceQuestionFragment extends Fragment {
+
+    //variable to store fragment value
+    int fragNum;
+    TextView questionNumberLabel;
+    TextView allocatedMarksLabel;
+    TextView questionLabel;
+    ListView multipleChoiceQuestionsListView;
+    CustomListAdapter adapter;
+    Question question;
+    String[] answers;
+    boolean correct;
+    String questionType;
+
+
+    //create new instance of fragment using num as argument
+    public static MultipleChoiceQuestionFragment newInstance(int num){
+
+        //instantiate fragment
+        MultipleChoiceQuestionFragment mcqf = new MultipleChoiceQuestionFragment();
+
+        // Supply num input as a bundle argument
+        Bundle args = new Bundle();
+        args.putInt("num", num);
+        mcqf.setArguments(args);
+
+        //return fragment
+        return mcqf;
+
+    }
+
+    //get arguments on create
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        fragNum =  getArguments() != null ? getArguments().getInt("num") : 1;
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_multiple_choice_question, container, false);
+
+        //get current activity
+        final QuestionActivity questionActivity = (QuestionActivity) getActivity();
+
+        //get current question
+        question = questionActivity.questions.get(fragNum);
+
+        //get text views
+        questionNumberLabel = (TextView) view.findViewById(R.id.questionNumberLabel);
+        allocatedMarksLabel = (TextView) view.findViewById(R.id.allocatedMarksLabel);
+        questionLabel = (TextView) view.findViewById(R.id.questionLabel);
+
+        //set text views
+        questionNumberLabel.setText(question.name);
+        allocatedMarksLabel.setText("(" + question.allocatedMarks + " marks)");
+        questionLabel.setText(question.question);
+
+        //check if options c and d are set: this checks if the question is a true/false question
+        if(question.c.equals("") && question.d.equals("")){
+
+            //store answers into string array
+            answers = new String[]{question.a, question.b};
+
+        } else {
+            //store answers into string array
+            answers = new String[]{question.a, question.b, question.c, question.d};
+        }
+
+
+        //init adapter
+        adapter = new CustomListAdapter(getActivity().getApplicationContext(), R.layout.row_multiple_choice_question, "multiple choice");
+        adapter.addAll(answers);
+
+        //init list view and set adapter
+        multipleChoiceQuestionsListView = (ListView) view.findViewById(R.id.multipleChoiceQuestionsListView);
+        multipleChoiceQuestionsListView.setAdapter(adapter);
+
+
+        //set list view item click listener
+        multipleChoiceQuestionsListView.setOnItemClickListener(
+                new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                        //check answer, go to appropriate answer activity
+
+                        correct = false;
+
+                        if(question.answer.equals(answers[position])){
+
+                            //increment number of correct items on parent activity
+                            questionActivity.correct++;
+
+                            //log number of correct items
+                            Log.d(MyApplication.TAG, "number of correct answers: " + questionActivity.correct);
+
+                            //set local correct boolean to true
+                            correct = true;
+
+                        }
+
+                        //get instance of parent fragment
+                        QuestionContainerFragment questionFragment = (QuestionContainerFragment)getParentFragment();
+
+                        //call flipCard function of parent fragment
+                        questionFragment.flipCard(correct, answers[position], question.answer, question.question, question.explanation);
+
+                    }
+                }
+        );
+
+        return  view;
+    }
+
+}

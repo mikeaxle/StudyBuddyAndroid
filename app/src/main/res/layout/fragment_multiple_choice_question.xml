@@ -1,0 +1,44 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/question_background"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/questionNumberLabel"
+        style="@style/titleText"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="@drawable/question_title_background"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="Question 1 of 5" />
+
+    <TextView
+        android:id="@+id/allocatedMarksLabel"
+        style="@style/smallText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="5dp"
+        android:text="(2 marks allocated)" />
+
+    <TextView
+        android:id="@+id/questionLabel"
+        style="@style/genericText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="How many questions are there in this exam paper?" />
+
+    <ListView
+        android:id="@+id/multipleChoiceQuestionsListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@color/colorLightGrey"
+        android:dividerHeight="2dp"
+        android:footerDividersEnabled="true"
+        android:headerDividersEnabled="true" />
+</LinearLayout>

@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">StudyBuddy</string>
+
+    <!-- tabs -->
+    <string name="title_subjects">Subjects</string>
+    <string name="title_marks">Marks</string>
+    <string name="title_more_papers">More Papers</string>
+    <string name="title_settings">Settings</string>
+
+    <!-- Buttons  -->
+    <string name="begin_exam">Begin Exam</string>
+    <string name="end_exam">End Exam</string>
+
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+</resources>

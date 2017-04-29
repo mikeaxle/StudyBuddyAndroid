@@ -1,0 +1,63 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorDeepPurple"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/paperSummaryToolBar"
+        style="@style/paperToolBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:navigationIcon="@drawable/ic_curved_up_white">
+
+        <TextView
+            android:id="@+id/paperSummaryTitleLabel"
+            style="@style/altTitleText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="title"
+            android:textSize="18sp" />
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:background="@drawable/paper_summary_background"
+        android:isScrollContainer="false"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/paperDetailsLabel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:text="details"
+            android:textStyle="bold" />
+
+        <ListView
+            android:id="@+id/sectionListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:footerDividersEnabled="false"
+            android:headerDividersEnabled="false" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/beginPaperButton"
+        style="@style/PaperButton"
+        android:background="@drawable/begin_exam_button_background"
+        android:onClick="onClick"
+        android:text="@string/begin_exam" />
+
+
+</LinearLayout>

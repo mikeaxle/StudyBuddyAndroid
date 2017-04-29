@@ -1,0 +1,65 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/multipleChoiceAnswerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/answer_background"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/statusAnswerLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|center_horizontal"
+        android:padding="10dp"
+        android:text="Correct"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/questionAnswerLabel"
+        style="@style/genericText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/selectedAnswerLabel"
+        style="@style/genericText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/answerAnswerLabel"
+        style="@style/genericText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/explanationAnswerLabel"
+        style="@style/genericText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp"
+        android:text="TextView" />
+
+    <Button
+        android:id="@+id/nextAnswerButton"
+        style="@style/NextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/next_button_background"
+        android:onClick="onClick"
+        android:text="Next" />
+</LinearLayout>

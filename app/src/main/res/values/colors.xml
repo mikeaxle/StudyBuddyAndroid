@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFC107</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorItemTint">#4a4a4a</color>
+    <color name="colorLightGrey">#F0F0F0</color>
+    <color name="colorDeepPurple">#100C53</color>
+    <color name="colorStudyBlue">#4990E2</color>
+</resources>

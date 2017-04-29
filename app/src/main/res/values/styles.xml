@@ -1,0 +1,98 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:fontFamily">Roboto</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#000</item>
+    </style>
+
+    <!-- title text -->
+    <style name="titleText">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorItemTint</item>
+    </style>
+
+    <!-- alternative title text -->
+    <style name="altTitleText">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#fff</item>
+    </style>
+
+    <!-- Course Row Item -->
+    <style name="courseRow">
+        <item name="android:background">@drawable/course_list_item_background</item>
+
+    </style>
+
+    <!-- Row Item Text -->
+    <style name="rowItemText">
+        <item name="android:textColor">#4A4A4A</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <!-- Generic Toolbar -->
+    <style name="genericToolBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:layout_weight">0</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:minHeight">?attr/actionBarSize</item>
+    </style>
+
+    <!-- Paper Toolbar -->
+    <style name="paperToolBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:layout_weight">0</item>
+        <item name="android:background">@color/colorDeepPurple</item>
+        <item name="android:minHeight">?attr/actionBarSize</item>
+    </style>
+
+    <!-- Change Grade Button -->
+    <style name="changeGradeButton">
+        <item name="android:layout_width">220dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">"change grade"</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:background">@drawable/change_grade_button_background</item>
+    </style>
+
+    <!-- Begin Paper Button -->
+    <style name="PaperButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:layout_weight">0</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <!-- Next Question Button -->
+    <style name="NextButton">
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_weight">0</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <!-- Small Text -->
+    <style name="smallText">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorItemTint</item>
+    </style>
+
+    <style name="genericText">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorItemTint</item>
+    </style>
+
+
+</resources>
