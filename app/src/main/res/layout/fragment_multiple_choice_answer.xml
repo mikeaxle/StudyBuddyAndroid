@@ -16,43 +16,56 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/questionAnswerLabel"
-        style="@style/genericText"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="TextView" />
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-    <TextView
-        android:id="@+id/selectedAnswerLabel"
-        style="@style/genericText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:paddingBottom="20dp"
-        android:paddingTop="20dp"
-        android:text="TextView" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/answerAnswerLabel"
-        style="@style/genericText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:paddingBottom="20dp"
-        android:paddingTop="20dp"
-        android:text="TextView" />
+            <TextView
+                android:id="@+id/questionAnswerLabel"
+                style="@style/genericText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView" />
 
-    <TextView
-        android:id="@+id/explanationAnswerLabel"
-        style="@style/genericText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="2"
-        android:paddingBottom="20dp"
-        android:paddingTop="20dp"
-        android:text="TextView" />
+            <TextView
+                android:id="@+id/selectedAnswerLabel"
+                style="@style/genericText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingBottom="20dp"
+                android:paddingTop="20dp"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/answerAnswerLabel"
+                style="@style/genericText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingBottom="20dp"
+                android:paddingTop="20dp"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/explanationAnswerLabel"
+                style="@style/genericText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingBottom="20dp"
+                android:paddingTop="20dp"
+                android:text="TextView" />
+
+        </LinearLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/nextAnswerButton"

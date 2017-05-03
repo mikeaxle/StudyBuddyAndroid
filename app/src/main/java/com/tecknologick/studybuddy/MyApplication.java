@@ -1,14 +1,20 @@
 package com.tecknologick.studybuddy;
 
 import android.app.Application;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import io.realm.DynamicRealm;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import io.realm.RealmMigration;
+import io.realm.RealmSchema;
 
 /**
  * Created by michaellungu on 4/20/17.
@@ -66,10 +72,34 @@ public class MyApplication extends Application {
         //initialize realm
         Realm.init(this);
 
+        //realm migration to add fields
+        RealmMigration migration = new RealmMigration() {
+            @Override
+            public void migrate(DynamicRealm realm, long oldVersion, long newVersion) {
+                RealmSchema schema = realm.getSchema();
+
+                if(oldVersion == 1){
+                    //add fields
+                    schema.get("Question")
+                            .addField("questionImage", String.class)
+                            .addField("answerImage", String.class)
+                            .addField("explanationImage", String.class)
+                            .addField("aImage", String.class)
+                            .addField("bImage", String.class)
+                            .addField("cImage", String.class)
+                            .addField("dImage", String.class);
+
+                    //increment
+                    oldVersion++;
+                }
+            }
+        };
+
         //create realm configuration
         RealmConfiguration config = new RealmConfiguration.Builder()
                 .name("studybuddy.realm")
-                .schemaVersion(1)
+                .schemaVersion(2)
+                .migration(migration)
                 .build();
 
         //set default realm configuration
@@ -95,7 +125,7 @@ public class MyApplication extends Application {
         return null;
     }
 
-    public boolean fileFound(String name, File file) {
+    private boolean fileFound(String name, File file) {
         File[] list = file.listFiles();
         if (list != null)
             for (File fil : list) {
@@ -108,6 +138,12 @@ public class MyApplication extends Application {
         return false;
     }
 
+    //function to convert the String representation of an image to a bitmap
+    public static Bitmap Base64ToBitmap(String myImageData)
+    {
+        byte[] imageAsBytes = Base64.decode(myImageData.getBytes(),Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+    }
 
 
 }

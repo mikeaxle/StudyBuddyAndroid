@@ -55,7 +55,7 @@ public class ResultActivity extends AppCompatActivity {
 
         //get pie chart
         resultChart = (PieChart) findViewById(R.id.resultsChart);
-        resultChart.setNoDataText("No marking in this paper");
+        resultChart.setNoDataText("Essay questions are not marked");
 
 
         //set title
@@ -87,8 +87,8 @@ public class ResultActivity extends AppCompatActivity {
             //create pie chart dataset using results
             List<PieEntry> entries = new ArrayList<>();
 
-            entries.add(new PieEntry(percentage, ""));
-            entries.add(new PieEntry(100 - percentage, ""));
+            entries.add(new PieEntry(percentage, "correct"));
+            entries.add(new PieEntry(100 - percentage, "wrong"));
 
             PieDataSet set = new PieDataSet(entries, "");
             set.setColors(ColorTemplate.VORDIPLOM_COLORS);

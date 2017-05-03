@@ -48,7 +48,7 @@ public class CourseActivity extends AppCompatActivity {
         courseID = tinyDB.getInt("courseID");
 
         //if course ID is set, go to module's actity
-        if(courseID == 0){
+        if(courseID != 0){
 
             i = new Intent(getApplicationContext(), ModuleActivity.class);
             startActivity(i);

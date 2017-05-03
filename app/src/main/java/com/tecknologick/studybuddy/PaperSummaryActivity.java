@@ -36,8 +36,8 @@ public class PaperSummaryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_paper_summary);
 
         //get courseID, moduleID & paperID from intent
-        //courseID_moduleID_paperID = (int[]) getIntent().getExtras().get("courseID_moduleID_paperID");
-        courseID_moduleID_paperID = new int[]{225,101,14};
+        courseID_moduleID_paperID = (int[]) getIntent().getExtras().get("courseID_moduleID_paperID");
+        //courseID_moduleID_paperID = new int[]{225,101,14};
 
         //set back button
         toolbar = (Toolbar) findViewById(R.id.paperSummaryToolBar);

@@ -109,7 +109,7 @@ public class QuestionContainerFragment extends Fragment {
     }
 
     //overload flipCard function
-    public void flipCard(String answer, String question) {
+    public void flipCard(String answer, String question, String answerImage) {
 
         //create blank fragment
         Fragment newFragment;
@@ -118,17 +118,17 @@ public class QuestionContainerFragment extends Fragment {
         if (cardFlipped) {
             newFragment = EssayQuestionFragment.newInstance(fragNum);
         } else {
-            newFragment = EssayAnswerFragment.newInstance(fragNum, answer, question);
+            newFragment = EssayAnswerFragment.newInstance(fragNum, answer, question, answerImage);
         }
 
         //assign animations
         getChildFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(
-                        R.animator.card_flip_right_in,
-                        R.animator.card_flip_right_out,
-                        R.animator.card_flip_left_in,
-                        R.animator.card_flip_left_out
+                        R.animator.card_flip_top_in,
+                        R.animator.card_flip_top_out,
+                        R.animator.card_flip_bottom_in,
+                        R.animator.card_flip_bottom_out
                 )
                 //replace fragment
                 .replace(R.id.questionContainer, newFragment)

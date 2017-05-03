@@ -67,7 +67,7 @@ public class PaperActivity extends AppCompatActivity {
             public void onClick(View v){
 
                 //create intent to go to previous page
-                Intent back = new Intent(getApplicationContext(), PaperActivity.class);
+                Intent back = new Intent(getApplicationContext(), ModuleActivity.class);
 
                 //get course id from courseID_moduleID array
                 int courseID = courseID_moduleID[0];

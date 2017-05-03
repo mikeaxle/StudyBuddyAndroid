@@ -1,18 +1,22 @@
 package com.tecknologick.studybuddy;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.tecknologick.studybuddy.SharedPref.TinyDB;
+
 public class ModuleActivity extends AppCompatActivity {
 
     Toolbar toolbar;
+    TinyDB tinyDB;
 
     //TODO: change bottom navigation to tabs if necessary
 
@@ -89,6 +93,14 @@ public class ModuleActivity extends AppCompatActivity {
     public void onClick(View view){
 
         //send back to course page, clear stack
+        Intent i = new Intent(this, CourseActivity.class);
+
+        //remove shared prefs value of module
+        tinyDB = new TinyDB(this);
+        tinyDB.putInt("courseID", 0);
+
+        //start activity
+        startActivity(i);
         finish();
     }
 }

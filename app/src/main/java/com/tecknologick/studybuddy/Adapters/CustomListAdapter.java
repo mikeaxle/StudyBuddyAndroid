@@ -1,7 +1,6 @@
 package com.tecknologick.studybuddy.Adapters;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -13,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.tecknologick.studybuddy.MyApplication;
@@ -22,6 +22,10 @@ import com.tecknologick.studybuddy.RealmClasses.Module;
 import com.tecknologick.studybuddy.RealmClasses.Paper;
 import com.tecknologick.studybuddy.RealmClasses.Section;
 
+import java.util.Random;
+
+import static android.graphics.Color.rgb;
+
 /**
  * Created by michaellungu on 4/11/17.
  */
@@ -30,10 +34,10 @@ public class CustomListAdapter extends ArrayAdapter {
 
     private int layoutResourceID;                                                       //resource ID
     private String[] colors;                                                            //array to store icon colors
-    //Random random;
+    Random random;
     ColorFilter colorFilter;                                                            //color filter
     String currentActivity;                                                             //current activity name
-    String additionalInfo;                                                              //additonal info to pass into list items
+    Object additionalInfo;                                                              //additonal info to pass into list items
 
     //constructor
     public CustomListAdapter(@NonNull Context context, @LayoutRes int resource, String currentActivity) {
@@ -42,11 +46,11 @@ public class CustomListAdapter extends ArrayAdapter {
         layoutResourceID = resource;                                                    //assign resource ID
         colors = new String[]{"#7ED321", "#A229B8", "#50E3C2", "#FF0000"};              //colors array
         this.currentActivity = currentActivity;                                         //assign current activity name
-        //random = new Random();
+        random = new Random();
     }
 
     //overload constructor
-    public CustomListAdapter(@NonNull Context context, @LayoutRes int resource, String currentActivity, String additionalInfo) {
+    public CustomListAdapter(@NonNull Context context, @LayoutRes int resource, String currentActivity, Object additionalInfo) {
         super(context, resource);
 
         layoutResourceID = resource;                                                    //assign resource ID
@@ -71,6 +75,10 @@ public class CustomListAdapter extends ArrayAdapter {
 
             switch (currentActivity){
 
+                case "institution":
+
+                    break;
+
                 //if on course activity
                 case "course":
                     //get current course name
@@ -81,8 +89,10 @@ public class CustomListAdapter extends ArrayAdapter {
 
                     //get icon and set color
                     ImageButton icon = (ImageButton) v.findViewById(R.id.courseImageButton);
-                    colorFilter = new PorterDuffColorFilter(Color.parseColor(colors[position]), PorterDuff.Mode.SRC_IN);
+                    //colorFilter = new PorterDuffColorFilter(Color.parseColor(colors[position]), PorterDuff.Mode.SRC_IN);
                     //rgb(random.nextInt(200),random.nextInt(256),random.nextInt(256) *all random colors
+
+                    colorFilter = new PorterDuffColorFilter(rgb(random.nextInt(200),random.nextInt(256),random.nextInt(256)), PorterDuff.Mode.SRC_IN);
                     icon.setColorFilter(colorFilter);
 
                     //assign with values from current course
@@ -99,7 +109,11 @@ public class CustomListAdapter extends ArrayAdapter {
                     TextView moduleName = (TextView) v.findViewById(R.id.moduleRowLabel);
                     moduleName.setText(module.name);
 
-                    // TODO: add module images
+                    //add module images
+                    if(!module.image.equals("")){
+                        ImageView paperIcon = (ImageView) v.findViewById(R.id.moduleImageButton);
+                        paperIcon.setImageBitmap(MyApplication.Base64ToBitmap(module.image));
+                    }
 
                     break;
 
@@ -109,7 +123,8 @@ public class CustomListAdapter extends ArrayAdapter {
 
                     //get paper text view and set paper name
                     TextView paperName = (TextView) v.findViewById(R.id.paperRowLabel);
-                    paperName.setText(additionalInfo + " " + paper.name + " (" + paper.year + ")");
+                    paperName.setText(additionalInfo.toString() + " " + paper.name + " (" + paper.year + ")");
+
 
                     break;
 
@@ -127,10 +142,9 @@ public class CustomListAdapter extends ArrayAdapter {
                     //get current question
                     final String answer = (String) getItem(position);
 
-
-
                     //set answer letter
                     String letter = "";
+                    String image = "";
 
                     switch(position){
                             case 0:
@@ -149,7 +163,6 @@ public class CustomListAdapter extends ArrayAdapter {
                                 break;
                     }
 
-
                     //get question row
                     TextView answerLabel = (TextView) v.findViewById(R.id.multipleChoiceQuestionRowQuestionLabel);
                     answerLabel.setText(answer);
@@ -158,6 +171,24 @@ public class CustomListAdapter extends ArrayAdapter {
                     TextView answerLetter = (TextView) v.findViewById(R.id.multipleChoiceQuestionRowNumberLabel);
                     //set answer letter
                     answerLetter.setText(letter);
+
+                    //check if answers have images, in this case additional info is a string array containing answer image base64 string representations
+                    if(additionalInfo != null){
+                        //cast additional info back to string array
+                        String[] images = (String[]) additionalInfo;
+
+                        //get current image answet
+                        image = images[position];
+
+                        //get image view
+                        ImageView answerImage = (ImageView) v.findViewById(R.id.multipleChoiceQuestionRowImageView);
+
+                        //set image view bitmap
+                        answerImage.setImageBitmap(MyApplication.Base64ToBitmap(image));
+
+                        //make image view visible
+                        answerImage.setVisibility(v.VISIBLE);
+                    }
 
                 default:
                     break;

@@ -1,7 +1,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/question_background"
+    android:isScrollContainer="false"
     android:orientation="vertical">
 
     <TextView
@@ -13,32 +15,53 @@
         android:gravity="center_vertical|center_horizontal"
         android:text="Question 1 of 5" />
 
-    <TextView
-        android:id="@+id/allocatedMarksLabel"
-        style="@style/smallText"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="5dp"
-        android:text="(2 marks allocated)" />
+        android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1">
 
-    <TextView
-        android:id="@+id/questionLabel"
-        style="@style/genericText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:text="How many questions are there in this exam paper?" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <ListView
-        android:id="@+id/multipleChoiceQuestionsListView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@color/colorLightGrey"
-        android:dividerHeight="2dp"
-        android:footerDividersEnabled="true"
-        android:headerDividersEnabled="true" />
+            <TextView
+                android:id="@+id/allocatedMarksLabel"
+                style="@style/smallText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="(2 marks allocated)" />
+
+            <TextView
+                android:id="@+id/questionLabel"
+                style="@style/genericText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="How many questions are there in this exam paper?" />
+
+            <ImageView
+                android:id="@+id/questionImageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:scaleType="fitCenter"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_assignment_black_24dp" />
+
+            <com.tecknologick.studybuddy.Adapters.ExpandableHeightListView
+                android:id="@+id/multipleChoiceQuestionsListView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@color/colorLightGrey"
+                android:dividerHeight="1dp"
+                android:footerDividersEnabled="true"
+                android:headerDividersEnabled="true" />
+        </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>
+

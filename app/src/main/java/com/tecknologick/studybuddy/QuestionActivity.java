@@ -47,8 +47,8 @@ public class QuestionActivity extends AppCompatActivity implements QuestionViewP
         alert = new AlertDialog.Builder(this);
 
         //get courseID, moduleID & paperID from intent
-        //courseID_moduleID_paperID = (int[]) getIntent().getExtras().get("courseID_moduleID_paperID");
-        courseID_moduleID_paperID = new int[]{225,101,14};
+        courseID_moduleID_paperID = (int[]) getIntent().getExtras().get("courseID_moduleID_paperID");
+        //courseID_moduleID_paperID = new int[]{225,101,14};
 
         //get paper from realm
         try {
@@ -71,6 +71,14 @@ public class QuestionActivity extends AppCompatActivity implements QuestionViewP
         } catch(RealmException re) {
 
             Log.d(MyApplication.TAG,"Realm error: " + re.getMessage());
+
+        }
+
+        //check if current section is the last one
+        if(paper.sections.size() == currentSection + 1){
+
+            //set has next section global variable  to false
+            ((MyApplication) getApplicationContext()).setHasNextSection(false);
 
         }
 

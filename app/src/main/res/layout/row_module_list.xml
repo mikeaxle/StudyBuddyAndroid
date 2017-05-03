@@ -15,14 +15,18 @@
         style="@style/rowItemText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="6"
+        android:layout_weight="1"
         android:text="TextView" />
 
-    <ImageButton
+    <com.github.siyamed.shapeimageview.CircularImageView
         android:id="@+id/moduleImageButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_weight="1"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:adjustViewBounds="false"
         android:background="@android:color/transparent"
-        app:srcCompat="@mipmap/ic_launcher" />
+        android:scaleType="center"
+        android:src="@mipmap/ic_launcher"
+        app:siBorderAlpha="0.0"
+        app:siBorderWidth="0dp" />
+
 </LinearLayout>

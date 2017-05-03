@@ -8,10 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ListView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.tecknologick.studybuddy.Adapters.CustomListAdapter;
+import com.tecknologick.studybuddy.Adapters.ExpandableHeightListView;
 import com.tecknologick.studybuddy.RealmClasses.Question;
 
 
@@ -22,10 +23,12 @@ public class MultipleChoiceQuestionFragment extends Fragment {
     TextView questionNumberLabel;
     TextView allocatedMarksLabel;
     TextView questionLabel;
-    ListView multipleChoiceQuestionsListView;
+    ImageView questionImageView;
+    ExpandableHeightListView multipleChoiceQuestionsListView;
     CustomListAdapter adapter;
     Question question;
     String[] answers;
+    String[] answerImages;
     boolean correct;
     String questionType;
 
@@ -65,6 +68,18 @@ public class MultipleChoiceQuestionFragment extends Fragment {
         //get current question
         question = questionActivity.questions.get(fragNum);
 
+        //check if question has an image
+        if(question.questionImage != null){
+            //get image view
+            questionImageView = (ImageView) view.findViewById(R.id.questionImageView);
+
+            //set image
+            questionImageView.setImageBitmap(MyApplication.Base64ToBitmap(question.questionImage));
+
+            //make visible
+            questionImageView.setVisibility(view.VISIBLE);
+        }
+
         //get text views
         questionNumberLabel = (TextView) view.findViewById(R.id.questionNumberLabel);
         allocatedMarksLabel = (TextView) view.findViewById(R.id.allocatedMarksLabel);
@@ -84,16 +99,26 @@ public class MultipleChoiceQuestionFragment extends Fragment {
         } else {
             //store answers into string array
             answers = new String[]{question.a, question.b, question.c, question.d};
+
+            //check answers have images and add to array
+            if(question.aImage != null){
+
+                answerImages = new String[]{question.aImage, question.bImage, question.cImage, question.dImage};
+
+            } else {
+
+                answerImages = null;
+            }
         }
 
-
         //init adapter
-        adapter = new CustomListAdapter(getActivity().getApplicationContext(), R.layout.row_multiple_choice_question, "multiple choice");
+        adapter = new CustomListAdapter(getActivity().getApplicationContext(), R.layout.row_multiple_choice_question, "multiple choice", answerImages);
         adapter.addAll(answers);
 
         //init list view and set adapter
-        multipleChoiceQuestionsListView = (ListView) view.findViewById(R.id.multipleChoiceQuestionsListView);
+        multipleChoiceQuestionsListView = (ExpandableHeightListView) view.findViewById(R.id.multipleChoiceQuestionsListView);
         multipleChoiceQuestionsListView.setAdapter(adapter);
+        multipleChoiceQuestionsListView.setExpanded(true);
 
 
         //set list view item click listener
@@ -105,6 +130,8 @@ public class MultipleChoiceQuestionFragment extends Fragment {
                         //check answer, go to appropriate answer activity
 
                         correct = false;
+
+                        //TODO: add condition to check if answers are images and how to handle in flip card
 
                         if(question.answer.equals(answers[position])){
 
@@ -124,6 +151,8 @@ public class MultipleChoiceQuestionFragment extends Fragment {
 
                         //call flipCard function of parent fragment
                         questionFragment.flipCard(correct, answers[position], question.answer, question.question, question.explanation);
+
+
 
                     }
                 }

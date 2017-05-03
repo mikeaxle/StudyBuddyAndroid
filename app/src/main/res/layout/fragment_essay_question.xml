@@ -14,20 +14,42 @@
         android:gravity="center_vertical|center_horizontal"
         android:text="Question 1 of 5" />
 
-    <TextView
-        android:id="@+id/essayAllocatedMarksLabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="(2 marks allocated)" />
-
-    <TextView
-        android:id="@+id/essayQuestionLabel"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:padding="10dp"
-        android:text="How many questions are there in this exam paper?" />
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/essayAllocatedMarksLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="(2 marks allocated)" />
+
+            <TextView
+                android:id="@+id/essayQuestionLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical"
+                android:text="How many questions are there in this exam paper?" />
+
+            <ImageView
+                android:id="@+id/essayQuestionImageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:scaleType="fitCenter"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_assignment_black_24dp" />
+        </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -59,7 +81,7 @@
                 android:layout_weight="1"
                 android:text="read aloud"
                 android:textAlignment="center"
-                android:textColor="@color/colorLightGrey" />
+                android:textColor="@android:color/darker_gray" />
         </LinearLayout>
 
         <LinearLayout
