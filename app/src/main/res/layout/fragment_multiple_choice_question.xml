@@ -33,7 +33,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:text="(2 marks allocated)" />
+                android:text="(2 marks allocated)"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/questionLabel"
@@ -41,7 +42,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:text="How many questions are there in this exam paper?" />
+                android:text="How many questions are there in this exam paper?"
+                android:textSize="18sp" />
 
             <ImageView
                 android:id="@+id/questionImageView"

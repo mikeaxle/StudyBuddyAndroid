@@ -9,7 +9,7 @@
         style="@style/genericToolBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="@color/colorBgGray"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:navigationIcon="@drawable/ic_curved_up_black">
@@ -24,8 +24,7 @@
                 style="@style/titleText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="18sp" />
+                android:layout_weight="1" />
 
         </LinearLayout>
 
@@ -35,7 +34,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/colorLightGrey"
+        android:background="@color/colorPrimary"
         android:gravity="center_vertical"
         android:padding="10dp">
 

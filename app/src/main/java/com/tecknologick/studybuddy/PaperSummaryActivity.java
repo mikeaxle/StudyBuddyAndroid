@@ -128,8 +128,14 @@ public class PaperSummaryActivity extends AppCompatActivity {
                         //set current section global variable to index position
                         ((MyApplication) getApplicationContext()).setCurrentSection(position);
 
-                        //call onclick to get to next activity
-                        onClick(findViewById(R.id.beginPaperButton));
+                        //create intent send to question activity
+                        Intent i = new Intent(getApplicationContext(), QuestionActivity.class);
+
+                        //put extra
+                        i.putExtra("courseID_moduleID_paperID", courseID_moduleID_paperID);
+
+                        //start activity
+                        startActivity(i);
 
                     }
                 }
@@ -138,6 +144,21 @@ public class PaperSummaryActivity extends AppCompatActivity {
 
     //begin exam button click event
     public void onClick(View view){
+
+        //check if clicked item is last item
+        if(paper.sections.size() == 1){
+
+            //set has next section global variable  to false
+            ((MyApplication) getApplicationContext()).setHasNextSection(false);
+
+        } else {
+
+            //set has next section global variable to true
+            ((MyApplication) getApplicationContext()).setHasNextSection(true);
+        }
+
+        //set current section global variable to index position
+        ((MyApplication) getApplicationContext()).setCurrentSection(0);
 
         //create intent send to question activity
         Intent i = new Intent(getApplicationContext(), QuestionActivity.class);

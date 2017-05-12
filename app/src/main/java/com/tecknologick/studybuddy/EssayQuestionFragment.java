@@ -130,8 +130,8 @@ public class EssayQuestionFragment extends Fragment {
                                 @Override
                                 public void run() {
                                     //change button & text color
-                                    readAloudButton.setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
-                                    readAloudQuestionLabel.setTextColor(getResources().getColor(R.color.colorPrimary));
+                                    readAloudButton.setColorFilter(getResources().getColor(R.color.colorBgGray), PorterDuff.Mode.SRC_IN);
+                                    readAloudQuestionLabel.setTextColor(getResources().getColor(R.color.colorBgGray));
                                 }
                             });
                         }
@@ -143,8 +143,8 @@ public class EssayQuestionFragment extends Fragment {
                                 @Override
                                 public void run() {
                                     //change button & text color
-                                    readAloudButton.setColorFilter(getResources().getColor(R.color.colorItemTint), PorterDuff.Mode.SRC_IN);
-                                    readAloudQuestionLabel.setTextColor(getResources().getColor(R.color.colorItemTint));
+                                    readAloudButton.setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
+                                    readAloudQuestionLabel.setTextColor(getResources().getColor(R.color.colorPrimary));
                                 }
                             });
                         }
@@ -199,7 +199,6 @@ public class EssayQuestionFragment extends Fragment {
                 } else {
                     questionFragment.flipCard(question.answer, question.question, null);
                 }
-
             }
         });
 

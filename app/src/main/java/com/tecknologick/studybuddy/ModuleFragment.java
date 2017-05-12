@@ -54,9 +54,8 @@ public class ModuleFragment extends Fragment {
         //inflate view
         View view =  inflater.inflate(R.layout.fragment_module, container, false);
 
-        //get course id from shared preferences
-        tinyDB = new TinyDB(view.getContext());
-        courseID = tinyDB.getInt("courseID");
+        //get course id from intent
+        courseID = getActivity().getIntent().getExtras().getInt("courseID");
 
         //get modules from realm
         try {

@@ -13,7 +13,7 @@
         style="@style/genericToolBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="@color/colorBgGray"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:navigationIcon="@drawable/ic_curved_up_black">
@@ -21,6 +21,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <TextView
@@ -28,14 +29,13 @@
                 style="@style/titleText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="18sp" />
+                android:layout_weight="1" />
 
             <Button
                 android:id="@+id/changeGradeButton"
                 style="@style/changeGradeButton"
-                android:text="Change Course"
-                android:onClick="onClick" />
+                android:onClick="onClick"
+                android:text="Change Course" />
         </LinearLayout>
 
     </android.support.v7.widget.Toolbar>
@@ -54,7 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorBgGray"
         app:itemIconTint="@color/colorItemTint"
         app:itemTextColor="@color/colorItemTint"
         app:menu="@menu/navigation" />

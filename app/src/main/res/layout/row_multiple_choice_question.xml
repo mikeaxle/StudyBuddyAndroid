@@ -27,7 +27,8 @@
         android:layout_marginLeft="20dp"
         android:layout_weight="10"
         android:text="Option here"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
 
     <ImageView
         android:id="@+id/multipleChoiceQuestionRowImageView"

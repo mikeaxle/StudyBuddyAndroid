@@ -38,7 +38,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="vertical"
-                android:text="How many questions are there in this exam paper?" />
+                android:text="How many questions are there in this exam paper?"
+                android:textSize="18sp" />
 
             <ImageView
                 android:id="@+id/essayQuestionImageView"
@@ -81,7 +82,7 @@
                 android:layout_weight="1"
                 android:text="read aloud"
                 android:textAlignment="center"
-                android:textColor="@android:color/darker_gray" />
+                android:textColor="@color/colorPrimary" />
         </LinearLayout>
 
         <LinearLayout

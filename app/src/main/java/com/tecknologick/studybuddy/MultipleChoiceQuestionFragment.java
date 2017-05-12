@@ -87,7 +87,16 @@ public class MultipleChoiceQuestionFragment extends Fragment {
 
         //set text views
         questionNumberLabel.setText(question.name);
-        allocatedMarksLabel.setText("(" + question.allocatedMarks + " marks)");
+
+        //check if allocated marks are more than 1
+        if(question.allocatedMarks == 1){
+
+            allocatedMarksLabel.setText("(" + question.allocatedMarks + " mark)");
+        } else {
+
+            allocatedMarksLabel.setText("(" + question.allocatedMarks + " marks)");
+        }
+
         questionLabel.setText(question.question);
 
         //check if options c and d are set: this checks if the question is a true/false question
@@ -128,10 +137,9 @@ public class MultipleChoiceQuestionFragment extends Fragment {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                         //check answer, go to appropriate answer activity
-
                         correct = false;
 
-                        //TODO: add condition to check if answers are images and how to handle in flip card
+                        //condition to check if answers are images and how to handle in flip card
 
                         if(question.answer.equals(answers[position])){
 
@@ -151,8 +159,6 @@ public class MultipleChoiceQuestionFragment extends Fragment {
 
                         //call flipCard function of parent fragment
                         questionFragment.flipCard(correct, answers[position], question.answer, question.question, question.explanation);
-
-
 
                     }
                 }

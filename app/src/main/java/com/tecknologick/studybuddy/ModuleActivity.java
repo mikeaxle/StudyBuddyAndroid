@@ -17,6 +17,7 @@ public class ModuleActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     TinyDB tinyDB;
+    private Intent i;
 
     //TODO: change bottom navigation to tabs if necessary
 
@@ -83,6 +84,8 @@ public class ModuleActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v){
+                i = new Intent(getApplicationContext(), CourseActivity.class);
+                startActivity(i);
                 finish();
             }
         });
@@ -93,11 +96,11 @@ public class ModuleActivity extends AppCompatActivity {
     public void onClick(View view){
 
         //send back to course page, clear stack
-        Intent i = new Intent(this, CourseActivity.class);
+        i = new Intent(this, CourseActivity.class);
 
         //remove shared prefs value of module
-        tinyDB = new TinyDB(this);
-        tinyDB.putInt("courseID", 0);
+        //tinyDB = new TinyDB(this);
+        //tinyDB.putInt("courseID", 0);
 
         //start activity
         startActivity(i);

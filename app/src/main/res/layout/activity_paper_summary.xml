@@ -12,15 +12,14 @@
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:navigationIcon="@drawable/ic_curved_up_white">
+        app:navigationIcon="@drawable/ic_curved_up_black">
 
         <TextView
             android:id="@+id/paperSummaryTitleLabel"
-            style="@style/altTitleText"
+            style="@style/titleText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="title"
-            android:textSize="18sp" />
+            android:text="title" />
     </android.support.v7.widget.Toolbar>
 
     <LinearLayout
@@ -47,6 +46,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@android:color/transparent"
+            android:divider="@android:color/transparent"
             android:footerDividersEnabled="false"
             android:headerDividersEnabled="false" />
 

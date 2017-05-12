@@ -15,12 +15,11 @@
 
         <TextView
             android:id="@+id/resultTitleLabel"
-            style="@style/altTitleText"
+            style="@style/titleText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="English Paper 1 (2014)"
-            android:textAlignment="center"
-            android:textSize="18sp" />
+            android:textAlignment="center" />
     </android.support.v7.widget.Toolbar>
 
     <LinearLayout

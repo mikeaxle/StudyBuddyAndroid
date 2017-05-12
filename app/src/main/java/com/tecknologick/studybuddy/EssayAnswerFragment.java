@@ -40,6 +40,7 @@ public class EssayAnswerFragment extends Fragment {
 
     //create new instance of fragment using num as argument
     public static EssayAnswerFragment newInstance(int num, String answer, String question, String answerImage){
+
         //instantiate fragment
         EssayAnswerFragment eaf = new EssayAnswerFragment();
 
@@ -150,8 +151,8 @@ public class EssayAnswerFragment extends Fragment {
                                 @Override
                                 public void run() {
                                     //change button & text color
-                                    readAloudAnswerImageButton.setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
-                                    readAloudAnswserLabel.setTextColor(getResources().getColor(R.color.colorPrimary));
+                                    readAloudAnswerImageButton.setColorFilter(getResources().getColor(R.color.colorBgGray), PorterDuff.Mode.SRC_IN);
+                                    readAloudAnswserLabel.setTextColor(getResources().getColor(R.color.colorBgGray));
 
                                 }
                             });
@@ -165,8 +166,8 @@ public class EssayAnswerFragment extends Fragment {
                                 public void run() {
 
                                     //change button & text color
-                                    readAloudAnswerImageButton.setColorFilter(getResources().getColor(R.color.colorItemTint), PorterDuff.Mode.SRC_IN);
-                                    readAloudAnswserLabel.setTextColor(getResources().getColor(R.color.colorItemTint));
+                                    readAloudAnswerImageButton.setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
+                                    readAloudAnswserLabel.setTextColor(getResources().getColor(R.color.colorPrimary));
                             }
                             });
                         }

@@ -2,16 +2,17 @@
     android:id="@+id/multipleChoiceAnswerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/answer_background"
-    android:orientation="vertical"
-    android:padding="10dp">
+    android:background="@drawable/question_background"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/statusAnswerLabel"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="65dp"
+        android:height="65dp"
+        android:background="@drawable/answer_background"
         android:gravity="center_vertical|center_horizontal"
-        android:padding="10dp"
+        android:minHeight="65dp"
         android:text="Correct"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -19,7 +20,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:padding="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,7 +34,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:paddingBottom="20dp"
+                android:paddingTop="10dp"
+                android:text="TextView"
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/selectedAnswerLabel"
@@ -72,6 +77,7 @@
         style="@style/NextButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:background="@drawable/next_button_background"
         android:onClick="onClick"
         android:text="Next" />
