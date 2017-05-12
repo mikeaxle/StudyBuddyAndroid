@@ -3,6 +3,7 @@ package com.tecknologick.studybuddy;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,49 +11,63 @@ import android.widget.ListView;
 
 import com.tecknologick.studybuddy.Adapters.CustomListAdapter;
 import com.tecknologick.studybuddy.RealmClasses.Course;
+import com.tecknologick.studybuddy.RealmClasses.Institution;
 import com.tecknologick.studybuddy.SharedPref.TinyDB;
 
 import io.realm.Realm;
-import io.realm.RealmResults;
+import io.realm.RealmList;
 import io.realm.exceptions.RealmException;
 
 public class CourseActivity extends AppCompatActivity {
 
-    /*
-    *   declare variables
-    *
-    */
+    // declare variables
     ListView listView;
-    RealmResults<Course> courses;
+    RealmList<Course> courses;
     CustomListAdapter adapter;
     private Realm realm;
-    int courseID;
+    int institutionID;
     TinyDB tinyDB;
+    Toolbar toolbar;
     Intent i;
 
     // TODO: change to recycler view
 
 
-    /*
-    *   onCreate override
-    *   Instantiate objects
-    */
+    //onCreate override, Instantiate objects
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course);
 
-        //create tinydb instance for access to shared preferences
+        //create tiny db instance for access to shared preferences
         tinyDB = new TinyDB(getApplicationContext());
-        courseID = tinyDB.getInt("courseID");
+        institutionID = tinyDB.getInt("institutionID");
 
-        //if course ID is set, go to module's actity
-        if(courseID != 0){
+        //if course ID is set, go to module's activity
+        if(institutionID == 0){
 
-            i = new Intent(getApplicationContext(), ModuleActivity.class);
+            i = new Intent(getApplicationContext(), InstitutionActivity.class);
             startActivity(i);
         }
+
+        //get toolbar
+        toolbar =  (Toolbar) findViewById(R.id.courseToolBar);
+
+        //set up button
+        toolbar.setNavigationOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+
+                //zero Institution id
+                tinyDB.putInt("institutionID", 0);
+
+                //send institution activity
+                i = new Intent(getApplicationContext(), InstitutionActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
         //get all course from realm
         try {
@@ -61,8 +76,10 @@ public class CourseActivity extends AppCompatActivity {
             realm = Realm.getDefaultInstance();
 
             //get all course
-            courses = realm.where(Course.class)
-                    .findAll();
+            courses = realm.where(Institution.class)
+                    .equalTo("id", institutionID)
+                    .findFirst()
+                    .courses;
 
         } catch(RealmException re) {
 
@@ -87,17 +104,28 @@ public class CourseActivity extends AppCompatActivity {
                         //create intent and send to paper class
                         i = new Intent(getApplicationContext(), ModuleActivity.class);
 
-                        //get selected course id
-                        courseID = courses.get(position).id;
-
-                        // write course id to shared preferences
-                        tinyDB.putInt("courseID", courseID);
+                        //put course ID as extra
+                        i.putExtra("courseID", courses.get(position).id);
 
                         //go to activity
                         startActivity(i);
                     }
                 }
         );
+    }
+
+    //set change grade button
+    public void onClick(View view){
+
+        //send back to course page, clear stack
+        i = new Intent(this, InstitutionActivity.class);
+
+        //zero Institution id
+        tinyDB.putInt("institutionID", 0);
+
+        //start activity
+        startActivity(i);
+        finish();
     }
 
 

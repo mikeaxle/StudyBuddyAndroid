@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.tecknologick.studybuddy.MyApplication;
 import com.tecknologick.studybuddy.R;
 import com.tecknologick.studybuddy.RealmClasses.Course;
+import com.tecknologick.studybuddy.RealmClasses.Institution;
 import com.tecknologick.studybuddy.RealmClasses.Module;
 import com.tecknologick.studybuddy.RealmClasses.Paper;
 import com.tecknologick.studybuddy.RealmClasses.Section;
@@ -77,6 +78,23 @@ public class CustomListAdapter extends ArrayAdapter {
 
                 case "institution":
 
+                    //get institution
+                    final Institution institution =  (Institution) getItem(position);
+
+                    //get text views
+                    TextView institutionName = (TextView) v.findViewById(R.id.InstitutionRowLabel);
+                    TextView institutionDesc = (TextView) v.findViewById(R.id.InstitutionRowDescLabel);
+
+                    //set text views
+                    institutionName.setText(institution.name);
+                    institutionDesc.setText(institution.description);
+
+                    //add module images
+                    if(institution.image != null){
+                        ImageView institutionIcon = (ImageView) v.findViewById(R.id.institutionRowImageButton);
+                        institutionIcon.setImageBitmap(MyApplication.Base64ToBitmap(institution.image));
+                    }
+
                     break;
 
                 //if on course activity
@@ -110,7 +128,7 @@ public class CustomListAdapter extends ArrayAdapter {
                     moduleName.setText(module.name);
 
                     //add module images
-                    if(!module.image.equals("")){
+                    if(module.image != null){
                         ImageView paperIcon = (ImageView) v.findViewById(R.id.moduleImageButton);
                         paperIcon.setImageBitmap(MyApplication.Base64ToBitmap(module.image));
                     }

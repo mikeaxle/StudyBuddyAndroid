@@ -32,7 +32,7 @@
     <!-- Row Item Text -->
     <style name="rowItemText">
         <item name="android:textColor">#4A4A4A</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
     <!-- Generic Toolbar -->

@@ -128,10 +128,9 @@ public class MultipleChoiceQuestionFragment extends Fragment {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                         //check answer, go to appropriate answer activity
-
                         correct = false;
 
-                        //TODO: add condition to check if answers are images and how to handle in flip card
+                        //condition to check if answers are images and how to handle in flip card
 
                         if(question.answer.equals(answers[position])){
 
@@ -151,8 +150,6 @@ public class MultipleChoiceQuestionFragment extends Fragment {
 
                         //call flipCard function of parent fragment
                         questionFragment.flipCard(correct, answers[position], question.answer, question.question, question.explanation);
-
-
 
                     }
                 }

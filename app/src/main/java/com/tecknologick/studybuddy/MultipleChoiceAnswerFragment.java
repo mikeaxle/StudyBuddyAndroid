@@ -7,7 +7,6 @@ import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
@@ -22,7 +21,6 @@ public class MultipleChoiceAnswerFragment extends Fragment {
     String answer;
     String question;
     String explanation;
-    LinearLayout layout;
     TextView statusAnswerLabel;
     TextView questionAnswerLabel;
     TextView answerAnswerLabel;
@@ -70,9 +68,6 @@ public class MultipleChoiceAnswerFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_multiple_choice_answer, container, false);
 
-        //get layout
-        layout = (LinearLayout) view.findViewById(R.id.multipleChoiceAnswerLayout);
-
         //get text views
         statusAnswerLabel = (TextView) view.findViewById(R.id.statusAnswerLabel);
         questionAnswerLabel = (TextView) view.findViewById(R.id.questionAnswerLabel);
@@ -81,18 +76,18 @@ public class MultipleChoiceAnswerFragment extends Fragment {
         explanationAnswerLabel = (TextView) view.findViewById(R.id.explanationAnswerLabel);
 
         //set text views
-        questionAnswerLabel.setText("Question: " + question);
+        questionAnswerLabel.setText(question);
         selectedAnswerLabel.setText("Your answer: " + selectedAnswer);
         answerAnswerLabel.setText("Correct answer: " + answer);
         explanationAnswerLabel.setText("Explanation: " + explanation);
 
         //set layout background color & status label based on value of correct
         if(correct){
-            layout.setBackground(ContextCompat.getDrawable(getActivity().getApplicationContext(), R.drawable.answer_background));
             statusAnswerLabel.setText("Correct");
+            statusAnswerLabel.setBackground(ContextCompat.getDrawable(getActivity().getApplicationContext(), R.drawable.answer_background));
         } else {
-            layout.setBackground(ContextCompat.getDrawable(getActivity().getApplicationContext(), R.drawable.answer_wrong_background));
             statusAnswerLabel.setText("Wrong");
+            statusAnswerLabel.setBackground(ContextCompat.getDrawable(getActivity().getApplicationContext(), R.drawable.answer_wrong_background));
         }
 
         return view;
