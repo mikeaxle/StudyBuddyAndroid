@@ -11,7 +11,5 @@
 
 ###Screenshots:
 
-![image-1](device-2017-05-12-032039.png)
-![image-2](https://github.com/mikeaxle/StudyBuddyAndroid/blob/master/device-2017-05-12-031948.png)
-![image-3](https://github.com/mikeaxle/StudyBuddyAndroid/blob/master/device-2017-05-12-031859.png)
-![image-4](https://github.com/mikeaxle/StudyBuddyAndroid/blob/master/device-2017-05-12-031745.png)
+![image-1](device-2017-05-12-032039.png) ![image-2](device-2017-05-12-031948.png)
+![image-3](device-2017-05-12-031859.png) ![image-4](device-2017-05-12-031745.png)
