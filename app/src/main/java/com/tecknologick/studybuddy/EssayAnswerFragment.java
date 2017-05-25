@@ -56,6 +56,8 @@ public class EssayAnswerFragment extends Fragment {
         return eaf;
     }
 
+
+
     //get arguments
     @Override
     public void onCreate(Bundle savedInstanceState){
