@@ -22,9 +22,6 @@ import java.util.Locale;
 
 public class EssayQuestionFragment extends Fragment {
 
-    //TODO: add new line characters to realm quetions storage
-    //TODO: add the ability for images to be used in questions
-
     //variable to store fragment value
     int fragNum;
     TextView essayQuestionNumberLabel;

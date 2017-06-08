@@ -57,7 +57,6 @@ public class EssayAnswerFragment extends Fragment {
     }
 
 
-
     //get arguments
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -210,5 +209,4 @@ public class EssayAnswerFragment extends Fragment {
         }
         super.onDestroy();
     }
-
 }
