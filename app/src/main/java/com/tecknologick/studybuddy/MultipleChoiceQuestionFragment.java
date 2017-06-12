@@ -23,6 +23,7 @@ public class MultipleChoiceQuestionFragment extends Fragment {
     TextView questionNumberLabel;
     TextView allocatedMarksLabel;
     TextView questionLabel;
+    TextView questionBottomLabel;
     ImageView questionImageView;
     ExpandableHeightListView multipleChoiceQuestionsListView;
     CustomListAdapter adapter;
@@ -69,7 +70,18 @@ public class MultipleChoiceQuestionFragment extends Fragment {
         question = questionActivity.questions.get(fragNum);
 
         //check if question has an image
-        if(question.questionImage != null){
+        if(question.questionImage != null && !question.questionImage.equals("")){
+
+            //check if there is a question after the image
+            if(question.question2 != null && !question.question2.equals("")){
+
+                //assign question2 from realm to question after image
+                questionBottomLabel = (TextView) view.findViewById(R.id.questionBottomLabel);
+                questionBottomLabel.setText(question.question2);
+                questionBottomLabel.setVisibility(view.VISIBLE);
+
+            }
+            
             //get image view
             questionImageView = (ImageView) view.findViewById(R.id.questionImageView);
 

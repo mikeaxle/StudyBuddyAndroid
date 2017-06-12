@@ -8,7 +8,7 @@
     <TextView
         android:id="@+id/statusAnswerLabel"
         android:layout_width="match_parent"
-        android:layout_height="65dp"
+        android:layout_height="40dp"
         android:height="65dp"
         android:background="@drawable/answer_background"
         android:gravity="center_vertical|center_horizontal"

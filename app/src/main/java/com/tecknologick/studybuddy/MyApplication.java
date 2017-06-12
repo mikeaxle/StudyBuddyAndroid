@@ -78,16 +78,10 @@ public class MyApplication extends Application {
             public void migrate(DynamicRealm realm, long oldVersion, long newVersion) {
                 RealmSchema schema = realm.getSchema();
 
-                if(oldVersion == 1){
+                if(oldVersion == 2){
                     //add fields
                     schema.get("Question")
-                            .addField("questionImage", String.class)
-                            .addField("answerImage", String.class)
-                            .addField("explanationImage", String.class)
-                            .addField("aImage", String.class)
-                            .addField("bImage", String.class)
-                            .addField("cImage", String.class)
-                            .addField("dImage", String.class);
+                            .addField("question2", String.class);
 
                     //increment
                     oldVersion++;
@@ -98,7 +92,7 @@ public class MyApplication extends Application {
         //create realm configuration
         RealmConfiguration config = new RealmConfiguration.Builder()
                 .name("studybuddy.realm")
-                .schemaVersion(2)
+                .schemaVersion(3)
                 .migration(migration)
                 .build();
 
@@ -144,6 +138,5 @@ public class MyApplication extends Application {
         byte[] imageAsBytes = Base64.decode(myImageData.getBytes(),Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
     }
-
 
 }

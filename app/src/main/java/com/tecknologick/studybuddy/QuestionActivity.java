@@ -215,7 +215,7 @@ public class QuestionActivity extends AppCompatActivity implements QuestionViewP
     public void onBackPressed(){
 
         //end paper button on click even handler
-        onClick(findViewById(R.id.endPaperButton));
+       onClick(findViewById(R.id.endPaperButton));
 
     }
 

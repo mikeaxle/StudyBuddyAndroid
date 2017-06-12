@@ -18,6 +18,7 @@ public class Question extends RealmObject {
     public int allocatedMarks;
 
     public String question;
+    public String question2;
     public String questionImage;
 
     public String answer;

@@ -1,15 +1,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/essayQuestionContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/question_background"
     android:orientation="vertical">
 
+    <ImageView
+        android:id="@+id/expandedEssayQuestionImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
     <TextView
         android:id="@+id/essayQuestionNumberLabel"
         style="@style/titleText"
         android:layout_width="match_parent"
-        android:layout_height="65dp"
+        android:layout_height="40dp"
         android:background="@drawable/question_title_background"
         android:gravity="center_vertical|center_horizontal"
         android:text="Question 1 of 5" />
@@ -23,6 +30,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:baselineAligned="false"
             android:orientation="vertical"
             android:padding="10dp">
 
@@ -38,17 +46,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="vertical"
-                android:text="How many questions are there in this exam paper?"
+                android:text="Question on top of image"
                 android:textSize="18sp" />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/essayQuestionImageView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:contentDescription="question image"
                 android:padding="10dp"
                 android:scaleType="fitCenter"
-                android:visibility="gone"
-                app:srcCompat="@drawable/ic_assignment_black_24dp" />
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/essayQuestionBottomLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical"
+                android:text="Question after image"
+                android:textSize="18sp"
+                android:visibility="gone" />
+
         </LinearLayout>
     </ScrollView>
 
@@ -56,6 +74,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:baselineAligned="false"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -67,9 +86,9 @@
 
             <ImageButton
                 android:id="@+id/readAloudQuestionImageButton"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_gravity="left"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="start"
                 android:background="@android:color/transparent"
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/ic_volume_up_black_24dp" />
@@ -77,8 +96,8 @@
             <TextView
                 android:id="@+id/readAloudQuestionLabel"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
+                android:layout_height="0dp"
+                android:layout_gravity="start"
                 android:layout_weight="1"
                 android:text="read aloud"
                 android:textAlignment="center"
@@ -89,14 +108,15 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:baselineAligned="false"
             android:gravity="center_vertical|center"
             android:orientation="vertical">
 
             <ImageButton
                 android:id="@+id/seeAnswerImageButton"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_gravity="right"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="end"
                 android:background="@android:color/transparent"
                 android:scaleType="centerCrop"
                 android:scaleX="-1"
@@ -106,7 +126,7 @@
                 android:id="@+id/showAnswerLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
+                android:layout_gravity="end"
                 android:text="see answer"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimary" />
