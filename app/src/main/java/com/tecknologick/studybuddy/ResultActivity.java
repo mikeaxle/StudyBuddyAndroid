@@ -82,7 +82,7 @@ public class ResultActivity extends AppCompatActivity {
             }
 
             //set result percentage and grading text view
-            resultPercentage.setText(percentage + "% - " + grading);
+            resultPercentage.setText(Math.floor(percentage) + "% - " + grading);
 
             //create pie chart dataset using results
             List<PieEntry> entries = new ArrayList<>();

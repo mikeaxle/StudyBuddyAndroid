@@ -79,7 +79,7 @@ public class QuestionContainerFragment extends Fragment {
     }
 
     //Function to flip question and answer cards
-    public void flipCard(boolean correct, String selectedAnswer, String answer, String question, String explanation) {
+    public void flipCard(boolean correct, String selectedAnswer, String answer, String question, String explanation, String answerImage) {
 
         //create blank fragment
         Fragment newFragment;
@@ -88,7 +88,7 @@ public class QuestionContainerFragment extends Fragment {
         if (cardFlipped) {
             newFragment = MultipleChoiceQuestionFragment.newInstance(fragNum);
         } else {
-            newFragment = MultipleChoiceAnswerFragment.newInstance(fragNum, correct, selectedAnswer, answer, question, explanation);
+            newFragment = MultipleChoiceAnswerFragment.newInstance(fragNum, correct, selectedAnswer, answer, question, explanation, answerImage);
         }
 
         //assign animations

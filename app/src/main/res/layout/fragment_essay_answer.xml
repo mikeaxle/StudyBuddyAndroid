@@ -6,7 +6,7 @@
     android:background="@drawable/question_background"
     android:orientation="vertical">
 
-    <ImageView
+    <com.github.chrisbanes.photoview.PhotoView
         android:id="@+id/expandedEssayAnswerImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -27,6 +27,8 @@
                 android:id="@+id/essayQuestionAnswerLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
                 android:scrollbars="vertical"
                 android:text="It seems that there are only five"
                 android:textSize="18sp" />

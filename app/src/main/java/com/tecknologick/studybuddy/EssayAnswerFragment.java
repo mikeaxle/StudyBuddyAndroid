@@ -13,6 +13,7 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.github.chrisbanes.photoview.PhotoView;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -93,7 +96,7 @@ public class EssayAnswerFragment extends Fragment {
         readAloudAnswserLabel = (TextView) view.findViewById(R.id.readAloudAnswserLabel);
 
         //set text view
-        essayQuestionAnswerLabel.setText(answer);
+        essayQuestionAnswerLabel.setText(Html.fromHtml(answer.trim()));
 
         //check if question has an image
         if(answerImage != null && !answerImage.equals("")){
@@ -107,7 +110,7 @@ public class EssayAnswerFragment extends Fragment {
             essayAnswerImageView.setImageBitmap(bitmap);
 
             //make visible
-            essayAnswerImageView.setVisibility(view.VISIBLE);
+            essayAnswerImageView.setVisibility(View.VISIBLE);
 
             //hook up click listener
             essayAnswerImageView.setOnClickListener(new View.OnClickListener() {
@@ -230,7 +233,7 @@ public class EssayAnswerFragment extends Fragment {
 
 
     //function to zoom image
-    private void zoomImageFromThumb(final View thumbView, Bitmap imageResId, int expandedImageId, int containerID) {
+    private void zoomImageFromThumb(final View thumbView, Bitmap bitmap, int expandedImageId, int containerID) {
         // If there's an animation in progress, cancel it
         // immediately and proceed with this one.
         if (mCurrentAnimator != null) {
@@ -239,8 +242,8 @@ public class EssayAnswerFragment extends Fragment {
 
         // Load the high-resolution "zoomed-in" image.
         //final ImageView expandedImageView = (ImageView) view.findViewById(R.id.expandedEssayQuestionImage);
-        final ImageView expandedImageView = (ImageView) view.findViewById(expandedImageId);
-        expandedImageView.setImageBitmap(imageResId);
+        final PhotoView expandedImageView = (PhotoView) view.findViewById(expandedImageId);
+        expandedImageView.setImageBitmap(bitmap);
 
         // Calculate the starting and ending bounds for the zoomed-in image.
         // This step involves lots of math. Yay, math.

@@ -3,6 +3,7 @@ package com.tecknologick.studybuddy;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -77,8 +78,8 @@ public class MultipleChoiceQuestionFragment extends Fragment {
 
                 //assign question2 from realm to question after image
                 questionBottomLabel = (TextView) view.findViewById(R.id.questionBottomLabel);
-                questionBottomLabel.setText(question.question2);
-                questionBottomLabel.setVisibility(view.VISIBLE);
+                questionBottomLabel.setText(Html.fromHtml(question.question2.trim()));
+                questionBottomLabel.setVisibility(View.VISIBLE);
 
             }
             
@@ -89,7 +90,8 @@ public class MultipleChoiceQuestionFragment extends Fragment {
             questionImageView.setImageBitmap(MyApplication.Base64ToBitmap(question.questionImage));
 
             //make visible
-            questionImageView.setVisibility(view.VISIBLE);
+            questionImageView.setVisibility(View.VISIBLE);
+
         }
 
         //get text views
@@ -98,7 +100,7 @@ public class MultipleChoiceQuestionFragment extends Fragment {
         questionLabel = (TextView) view.findViewById(R.id.questionLabel);
 
         //set text views
-        questionNumberLabel.setText(question.name);
+        questionNumberLabel.setText(question.name.trim());
 
         //check if allocated marks are more than 1
         if(question.allocatedMarks == 1){
@@ -109,7 +111,7 @@ public class MultipleChoiceQuestionFragment extends Fragment {
             allocatedMarksLabel.setText("(" + question.allocatedMarks + " marks)");
         }
 
-        questionLabel.setText(question.question);
+        questionLabel.setText(Html.fromHtml(question.question.trim()));
 
         //check if options c and d are set: this checks if the question is a true/false question
         if(question.c.equals("") && question.d.equals("")){
@@ -153,7 +155,7 @@ public class MultipleChoiceQuestionFragment extends Fragment {
 
                         //condition to check if answers are images and how to handle in flip card
 
-                        if(question.answer.equals(answers[position])){
+                        if(question.answer.trim().equals(answers[position].trim())){
 
                             //increment number of correct items on parent activity
                             questionActivity.correct++;
@@ -170,7 +172,7 @@ public class MultipleChoiceQuestionFragment extends Fragment {
                         QuestionContainerFragment questionFragment = (QuestionContainerFragment)getParentFragment();
 
                         //call flipCard function of parent fragment
-                        questionFragment.flipCard(correct, answers[position], question.answer, question.question, question.explanation);
+                        questionFragment.flipCard(correct, answers[position], question.answer, question.question, question.explanation, question.answerImage);
 
                     }
                 }

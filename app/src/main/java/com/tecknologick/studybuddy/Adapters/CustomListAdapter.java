@@ -6,6 +6,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -183,7 +184,7 @@ public class CustomListAdapter extends ArrayAdapter {
 
                     //get question row
                     TextView answerLabel = (TextView) v.findViewById(R.id.multipleChoiceQuestionRowQuestionLabel);
-                    answerLabel.setText(answer);
+                    answerLabel.setText(Html.fromHtml(answer.trim()));
 
                     //get answer letter label
                     TextView answerLetter = (TextView) v.findViewById(R.id.multipleChoiceQuestionRowNumberLabel);
@@ -205,7 +206,7 @@ public class CustomListAdapter extends ArrayAdapter {
                         answerImage.setImageBitmap(MyApplication.Base64ToBitmap(image));
 
                         //make image view visible
-                        answerImage.setVisibility(v.VISIBLE);
+                        answerImage.setVisibility(View.VISIBLE);
                     }
 
                 default:

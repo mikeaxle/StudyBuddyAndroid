@@ -13,15 +13,16 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.chrisbanes.photoview.PhotoView;
 import com.tecknologick.studybuddy.RealmClasses.Question;
 
 import java.util.HashMap;
@@ -96,7 +97,7 @@ public class EssayQuestionFragment extends Fragment {
         //set text views
         essayQuestionNumberLabel.setText(question.name);
         essayAllocatedMarksLabel.setText("(" + question.allocatedMarks + " marks)");
-        essayQuestionLabel.setText(question.question);                                              //display question
+        essayQuestionLabel.setText(Html.fromHtml(question.question.trim()));                                              //display question
 
         //check if question has an image
         if(question.questionImage != null && !question.questionImage.equals("")){
@@ -106,8 +107,8 @@ public class EssayQuestionFragment extends Fragment {
 
                 //assign question2 from realm to question after image
                 essayQuestionBottomLabel = (TextView) view.findViewById(R.id.essayQuestionBottomLabel);
-                essayQuestionBottomLabel.setText(question.question2);
-                essayQuestionBottomLabel.setVisibility(view.VISIBLE);
+                essayQuestionBottomLabel.setText(Html.fromHtml(question.question2.trim()));
+                essayQuestionBottomLabel.setVisibility(View.VISIBLE);
 
             }
 
@@ -121,7 +122,7 @@ public class EssayQuestionFragment extends Fragment {
             essayQuestionImageView.setImageBitmap(bitmap);
 
             //make visible
-            essayQuestionImageView.setVisibility(view.VISIBLE);
+            essayQuestionImageView.setVisibility(View.VISIBLE);
 
             //hook up click listener
             essayQuestionImageView.setOnClickListener(new View.OnClickListener() {
@@ -132,10 +133,10 @@ public class EssayQuestionFragment extends Fragment {
                     int expandedImageId = R.id.expandedEssayQuestionImage;
 
                     //get container ID
-                    int containerID = R.id.essayAnswerContainer;
+                    //int containerID = R.id.essayQuestionContainer;
 
                     //call zoom image function
-                    zoomImageFromThumb(essayQuestionImageView, bitmap, expandedImageId, containerID);
+                    zoomImageFromThumb(essayQuestionImageView, bitmap, expandedImageId);
                 }
             });
 
@@ -249,7 +250,7 @@ public class EssayQuestionFragment extends Fragment {
     }
 
     //function to zoom image
-    private void zoomImageFromThumb(final View thumbView, Bitmap imageResId, int expandedImageId, int containerID) {
+    private void zoomImageFromThumb(final View thumbView, Bitmap bitmap, int expandedImageId) {
         // If there's an animation in progress, cancel it
         // immediately and proceed with this one.
         if (mCurrentAnimator != null) {
@@ -258,8 +259,8 @@ public class EssayQuestionFragment extends Fragment {
 
         // Load the high-resolution "zoomed-in" image.
         //final ImageView expandedImageView = (ImageView) view.findViewById(R.id.expandedEssayQuestionImage);
-        final ImageView expandedImageView = (ImageView) view.findViewById(expandedImageId);
-        expandedImageView.setImageBitmap(imageResId);
+        final PhotoView expandedImageView = (PhotoView) view.findViewById(expandedImageId);
+        expandedImageView.setImageBitmap(bitmap);
 
         // Calculate the starting and ending bounds for the zoomed-in image.
         // This step involves lots of math. Yay, math.
@@ -273,7 +274,7 @@ public class EssayQuestionFragment extends Fragment {
         // bounds, since that's the origin for the positioning animation
         // properties (X, Y).
         thumbView.getGlobalVisibleRect(startBounds);
-        view.findViewById(containerID).getGlobalVisibleRect(finalBounds, globalOffset);
+        view.findViewById(R.id.essayQuestionContainer).getGlobalVisibleRect(finalBounds, globalOffset);
         startBounds.offset(-globalOffset.x, -globalOffset.y);
         finalBounds.offset(-globalOffset.x, -globalOffset.y);
 
