@@ -2,22 +2,22 @@ package com.tecknologick.studybuddy;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.tecknologick.studybuddy.SharedPref.TinyDB;
-
 public class ModuleActivity extends AppCompatActivity {
 
     Toolbar toolbar;
-    TinyDB tinyDB;
     private Intent i;
+    AlertDialog.Builder alert;
 
     //TODO: change bottom navigation to tabs if necessary
 
@@ -90,6 +90,9 @@ public class ModuleActivity extends AppCompatActivity {
             }
         });
 
+        //init dialog box
+        alert = new AlertDialog.Builder(this);
+
     }
 
     //set change grade button
@@ -105,5 +108,32 @@ public class ModuleActivity extends AppCompatActivity {
         //start activity
         startActivity(i);
         finish();
+    }
+
+
+    //override hardware back button
+    @Override
+    public void onBackPressed(){
+        //show alert dialog
+        alert.setTitle("Exit App");
+        alert.setMessage("Would you like to exit Study Buddy?")
+                //continue paper
+                .setPositiveButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                })
+                //exit paper
+                .setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        //destroy current activity
+                        finish();
+                    }
+                });
+        alert.create();
+        alert.show();
     }
 }

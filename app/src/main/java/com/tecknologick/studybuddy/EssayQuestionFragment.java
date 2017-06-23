@@ -91,26 +91,35 @@ public class EssayQuestionFragment extends Fragment {
         //get text view
         essayQuestionNumberLabel = (TextView) view.findViewById(R.id.essayQuestionNumberLabel);
         essayAllocatedMarksLabel = (TextView) view.findViewById(R.id.essayAllocatedMarksLabel);
-        essayQuestionLabel = (TextView) view.findViewById(R.id.essayQuestionLabel);
+
         readAloudQuestionLabel = (TextView) view.findViewById(R.id.readAloudQuestionLabel);
 
         //set text views
         essayQuestionNumberLabel.setText(question.name);
         essayAllocatedMarksLabel.setText("(" + question.allocatedMarks + " marks)");
-        essayQuestionLabel.setText(Html.fromHtml(question.question.trim()));                                              //display question
+
+        //check if question is set
+        if(question.question != null && !question.question.equals("")){
+
+            //assign question from realm to question before image
+            essayQuestionLabel = (TextView) view.findViewById(R.id.essayQuestionLabel);
+            essayQuestionLabel.setText(Html.fromHtml(question.question.trim()));
+            essayQuestionLabel.setVisibility(View.VISIBLE);
+
+        }
+
+        //check if there is a question after the image
+        if(question.question2 != null && !question.question2.equals("")){
+
+            //assign question2 from realm to question after image
+            essayQuestionBottomLabel = (TextView) view.findViewById(R.id.essayQuestionBottomLabel);
+            essayQuestionBottomLabel.setText(Html.fromHtml(question.question2.trim()));
+            essayQuestionBottomLabel.setVisibility(View.VISIBLE);
+
+        }
 
         //check if question has an image
         if(question.questionImage != null && !question.questionImage.equals("")){
-
-            //check if there is a question after the image
-            if(question.question2 != null && !question.question2.equals("")){
-
-                //assign question2 from realm to question after image
-                essayQuestionBottomLabel = (TextView) view.findViewById(R.id.essayQuestionBottomLabel);
-                essayQuestionBottomLabel.setText(Html.fromHtml(question.question2.trim()));
-                essayQuestionBottomLabel.setVisibility(View.VISIBLE);
-
-            }
 
             //get image view
             essayQuestionImageView = (ImageButton) view.findViewById(R.id.essayQuestionImageView);

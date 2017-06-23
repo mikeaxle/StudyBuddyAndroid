@@ -43,7 +43,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:text="text before image"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/questionImageView"

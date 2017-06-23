@@ -70,34 +70,9 @@ public class MultipleChoiceQuestionFragment extends Fragment {
         //get current question
         question = questionActivity.questions.get(fragNum);
 
-        //check if question has an image
-        if(question.questionImage != null && !question.questionImage.equals("")){
-
-            //check if there is a question after the image
-            if(question.question2 != null && !question.question2.equals("")){
-
-                //assign question2 from realm to question after image
-                questionBottomLabel = (TextView) view.findViewById(R.id.questionBottomLabel);
-                questionBottomLabel.setText(Html.fromHtml(question.question2.trim()));
-                questionBottomLabel.setVisibility(View.VISIBLE);
-
-            }
-            
-            //get image view
-            questionImageView = (ImageView) view.findViewById(R.id.questionImageView);
-
-            //set image
-            questionImageView.setImageBitmap(MyApplication.Base64ToBitmap(question.questionImage));
-
-            //make visible
-            questionImageView.setVisibility(View.VISIBLE);
-
-        }
-
         //get text views
         questionNumberLabel = (TextView) view.findViewById(R.id.questionNumberLabel);
         allocatedMarksLabel = (TextView) view.findViewById(R.id.allocatedMarksLabel);
-        questionLabel = (TextView) view.findViewById(R.id.questionLabel);
 
         //set text views
         questionNumberLabel.setText(question.name.trim());
@@ -111,7 +86,41 @@ public class MultipleChoiceQuestionFragment extends Fragment {
             allocatedMarksLabel.setText("(" + question.allocatedMarks + " marks)");
         }
 
-        questionLabel.setText(Html.fromHtml(question.question.trim()));
+        //check if question set
+        if(question.question != null && !question.question.equals("")){
+
+            //assign question2 from realm to before image
+            questionLabel = (TextView) view.findViewById(R.id.questionLabel);
+            questionLabel.setText(Html.fromHtml(question.question.trim()));
+            questionLabel.setVisibility(View.VISIBLE);
+
+        }
+
+        //check if there is a question after the image
+        if(question.question2 != null && !question.question2.equals("")){
+
+            //assign question2 from realm to question after image
+            questionBottomLabel = (TextView) view.findViewById(R.id.questionBottomLabel);
+            questionBottomLabel.setText(Html.fromHtml(question.question2.trim()));
+            questionBottomLabel.setVisibility(View.VISIBLE);
+
+        }
+
+        //check if question has an image
+        if(question.questionImage != null && !question.questionImage.equals("")){
+
+
+            //get image view
+            questionImageView = (ImageView) view.findViewById(R.id.questionImageView);
+
+            //set image
+            questionImageView.setImageBitmap(MyApplication.Base64ToBitmap(question.questionImage));
+
+            //make visible
+            questionImageView.setVisibility(View.VISIBLE);
+
+        }
+
 
         //check if options c and d are set: this checks if the question is a true/false question
         if(question.c.equals("") && question.d.equals("")){
@@ -172,7 +181,7 @@ public class MultipleChoiceQuestionFragment extends Fragment {
                         QuestionContainerFragment questionFragment = (QuestionContainerFragment)getParentFragment();
 
                         //call flipCard function of parent fragment
-                        questionFragment.flipCard(correct, answers[position], question.answer, question.question, question.explanation, question.answerImage);
+                        questionFragment.flipCard(correct, answers[position], question.answer, question.question, question.question2, question.explanation, question.questionImage, question.answerImage);
 
                     }
                 }

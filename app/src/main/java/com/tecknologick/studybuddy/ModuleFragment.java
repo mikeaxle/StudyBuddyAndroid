@@ -54,8 +54,8 @@ public class ModuleFragment extends Fragment {
         //inflate view
         View view =  inflater.inflate(R.layout.fragment_module, container, false);
 
-        //get course id from intent
-        courseID = getActivity().getIntent().getExtras().getInt("courseID");
+        //set realm ID of grade 12
+        courseID = 233;
 
         //get modules from realm
         try {

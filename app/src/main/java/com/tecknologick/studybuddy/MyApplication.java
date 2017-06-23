@@ -1,5 +1,6 @@
 package com.tecknologick.studybuddy;
 
+import android.animation.Animator;
 import android.app.Application;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -26,6 +27,13 @@ public class MyApplication extends Application {
     public static String TAG = "studybuddy";                           //Log tag
     private boolean hasNextSection;                             //bool to check if paper has an additional section
     private int currentSection;                                 //index of current section being viewed in paper
+
+
+    // Hold a reference to the current animator, so that it can be canceled mid-way.
+    private Animator mCurrentAnimator;
+
+    //The system "short" animation time duration, in milliseconds. This duration is ideal for subtle animations or animations that occur very frequently.
+    private int mShortAnimationDuration;
 
 
     //setters
@@ -138,5 +146,6 @@ public class MyApplication extends Application {
         byte[] imageAsBytes = Base64.decode(myImageData.getBytes(),Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
     }
+
 
 }

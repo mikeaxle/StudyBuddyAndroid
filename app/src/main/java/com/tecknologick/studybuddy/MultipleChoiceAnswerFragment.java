@@ -13,9 +13,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class MultipleChoiceAnswerFragment extends Fragment {
 
     int fragNum;
@@ -23,13 +20,17 @@ public class MultipleChoiceAnswerFragment extends Fragment {
     String selectedAnswer;
     String answer;
     String question;
+    String question2;
     String explanation;
+    String questionImage;
     String answerImage;
     TextView statusAnswerLabel;
     TextView questionAnswerLabel;
+    TextView questionAnswerBelowLabel;
     TextView answerAnswerLabel;
     TextView selectedAnswerLabel;
     TextView explanationAnswerLabel;
+    ImageButton questionImageButton;
     ImageButton answerImageButton;
 
     public MultipleChoiceAnswerFragment() {
@@ -37,7 +38,7 @@ public class MultipleChoiceAnswerFragment extends Fragment {
     }
 
     //create new instance of fragment using num as argument
-    public static MultipleChoiceAnswerFragment newInstance(int num, boolean correct, String selectedAnswer, String answer, String question, String explanation, String answerImage){
+    public static MultipleChoiceAnswerFragment newInstance(int num, boolean correct, String selectedAnswer, String answer, String question, String question2, String explanation, String questionImage, String answerImage){
         //instantiate fragment
         MultipleChoiceAnswerFragment mcaf = new MultipleChoiceAnswerFragment();
 
@@ -46,7 +47,9 @@ public class MultipleChoiceAnswerFragment extends Fragment {
         args.putString("answer", answer);
         args.putString("selectedAnswer", selectedAnswer);
         args.putString("question", question);
+        args.putString("question2", question2);
         args.putString("explanation", explanation);
+        args.putString("questionImage", questionImage);
         args.putString("answerImage", answerImage);
         args.putInt("num", num);
         args.putBoolean("correct", correct);
@@ -64,7 +67,9 @@ public class MultipleChoiceAnswerFragment extends Fragment {
         selectedAnswer = getArguments() != null ? getArguments().getString("selectedAnswer") : "";
         answer = getArguments() != null ? getArguments().getString("answer") : "";
         question = getArguments() != null ? getArguments().getString("question") : "";
+        question2 = getArguments() != null ? getArguments().getString("question2") : "";
         explanation = getArguments() != null ? getArguments().getString("explanation") : "";
+        questionImage = getArguments() != null ? getArguments().getString("questionImage") : "";
         answerImage = getArguments() != null ? getArguments().getString("answerImage") : "";
     }
 
@@ -77,16 +82,51 @@ public class MultipleChoiceAnswerFragment extends Fragment {
 
         //get text views
         statusAnswerLabel = (TextView) view.findViewById(R.id.statusAnswerLabel);
-        questionAnswerLabel = (TextView) view.findViewById(R.id.questionAnswerLabel);
         answerAnswerLabel = (TextView) view.findViewById(R.id.answerAnswerLabel);
         selectedAnswerLabel = (TextView) view.findViewById(R.id.selectedAnswerLabel);
-        explanationAnswerLabel = (TextView) view.findViewById(R.id.explanationAnswerLabel);
 
         //set text views
-        questionAnswerLabel.setText(Html.fromHtml(question));
-        selectedAnswerLabel.setText(Html.fromHtml("Your answer: " + selectedAnswer.trim()));
-        answerAnswerLabel.setText(Html.fromHtml("Correct answer: " + answer.trim()));
-        explanationAnswerLabel.setText(Html.fromHtml("Explanation: " + explanation.trim()));
+        selectedAnswerLabel.setText(Html.fromHtml("<b>Your answer:</b> " + selectedAnswer.trim()));
+        answerAnswerLabel.setText(Html.fromHtml("<b>Correct answer:</b> " + answer.trim()));
+
+        //check if there is a question before the image
+        if(question != null && !question.equals("")){
+
+            //get and set text view
+            questionAnswerLabel = (TextView) view.findViewById(R.id.questionAnswerLabel);
+            questionAnswerLabel.setText(Html.fromHtml(question));
+
+            //make visible
+            questionAnswerLabel.setVisibility(View.VISIBLE);
+        }
+
+        //check if there is a question after the image
+        if(question2 != null && !question2.equals("")){
+
+            //get and set text view
+            questionAnswerBelowLabel = (TextView) view.findViewById(R.id.questionAnswerBelowLabel);
+            questionAnswerBelowLabel.setText(Html.fromHtml(question2));
+
+            //make visible
+            questionAnswerBelowLabel.setVisibility(View.VISIBLE);
+        }
+
+        //check if there is a question image
+        if(questionImage != null && !questionImage.equals("")){
+
+            //get answer image button
+            questionImageButton = (ImageButton) view.findViewById(R.id.questionAnswerImageButton);
+
+            //convert base64 string to image
+            final Bitmap bitmap = MyApplication.Base64ToBitmap(questionImage);
+
+            //set image
+            questionImageButton.setImageBitmap(bitmap);
+
+            //make visible
+            questionImageButton.setVisibility(View.VISIBLE);
+
+        }
 
         //set layout background color & status label based on value of correct
         if(correct){
@@ -97,8 +137,20 @@ public class MultipleChoiceAnswerFragment extends Fragment {
             statusAnswerLabel.setBackground(ContextCompat.getDrawable(getActivity().getApplicationContext(), R.drawable.answer_wrong_background));
         }
 
+        //check if an explanation is available
+        if(explanation != null && !explanation.equals("")){
+
+            //get and set explanation textview
+            explanationAnswerLabel = (TextView) view.findViewById(R.id.explanationAnswerLabel);
+            explanationAnswerLabel.setText(Html.fromHtml("<b>Explanation:</b> " + explanation.trim()));
+
+            //show textview
+            explanationAnswerLabel.setVisibility(View.VISIBLE);
+
+        }
+
         //check if answer has an image
-        if(!answerImage.equals("")){
+        if(answerImage != null && !answerImage.equals("")){
 
             //get answer image button
             answerImageButton = (ImageButton) view.findViewById(R.id.multipleChoiceAnswerImageButton);

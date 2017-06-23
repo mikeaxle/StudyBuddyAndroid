@@ -18,6 +18,8 @@ import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.exceptions.RealmException;
 
+import static com.tecknologick.studybuddy.R.layout.activity_course;
+
 public class CourseActivity extends AppCompatActivity {
 
     // declare variables
@@ -30,6 +32,7 @@ public class CourseActivity extends AppCompatActivity {
     Toolbar toolbar;
     Intent i;
 
+
     // TODO: change to recycler view
 
 
@@ -38,7 +41,7 @@ public class CourseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_course);
+        setContentView(activity_course);
 
         //create tiny db instance for access to shared preferences
         tinyDB = new TinyDB(getApplicationContext());
@@ -68,6 +71,8 @@ public class CourseActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+
 
         //get all course from realm
         try {

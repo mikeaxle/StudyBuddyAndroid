@@ -34,7 +34,8 @@
         style="@style/PaperButton"
         android:background="@drawable/end_exam_button_background"
         android:onClick="onClick"
-        android:text="@string/end_exam" />
+        android:text="@string/end_exam"
+        android:visibility="gone" />
 
 
 </LinearLayout>

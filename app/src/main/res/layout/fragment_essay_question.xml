@@ -46,7 +46,8 @@
                 android:layout_height="wrap_content"
                 android:scrollbars="vertical"
                 android:text="Question on top of image"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:visibility="gone" />
 
             <ImageButton
                 android:id="@+id/essayQuestionImageView"

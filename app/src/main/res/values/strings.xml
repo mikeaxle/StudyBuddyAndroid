@@ -2,7 +2,7 @@
     <string name="app_name">StudyBuddy</string>
 
     <!-- tabs -->
-    <string name="title_subjects">Modules</string>
+    <string name="title_subjects">Subjects</string>
     <string name="title_marks">Marks</string>
     <string name="title_more_papers">More Papers</string>
     <string name="title_settings">Settings</string>
