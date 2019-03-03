@@ -22,7 +22,6 @@ public class MultipleChoiceQuestionFragment extends Fragment {
     //variable to store fragment value
     int fragNum;
     TextView questionNumberLabel;
-    TextView allocatedMarksLabel;
     TextView questionLabel;
     TextView questionBottomLabel;
     ImageView questionImageView;
@@ -71,8 +70,7 @@ public class MultipleChoiceQuestionFragment extends Fragment {
         question = questionActivity.questions.get(fragNum);
 
         //get text views
-        questionNumberLabel = (TextView) view.findViewById(R.id.questionNumberLabel);
-        allocatedMarksLabel = (TextView) view.findViewById(R.id.allocatedMarksLabel);
+        questionNumberLabel = view.findViewById(R.id.questionNumberLabel);
 
         //set text views
         questionNumberLabel.setText(question.name.trim());
@@ -80,17 +78,17 @@ public class MultipleChoiceQuestionFragment extends Fragment {
         //check if allocated marks are more than 1
         if(question.allocatedMarks == 1){
 
-            allocatedMarksLabel.setText("(" + question.allocatedMarks + " mark)");
+            questionNumberLabel.setText(questionNumberLabel.getText() + " (" + question.allocatedMarks + " mark)");
         } else {
 
-            allocatedMarksLabel.setText("(" + question.allocatedMarks + " marks)");
+            questionNumberLabel.setText(questionNumberLabel.getText() + " (" + question.allocatedMarks + " marks)");
         }
 
         //check if question set
         if(question.question != null && !question.question.equals("")){
 
             //assign question2 from realm to before image
-            questionLabel = (TextView) view.findViewById(R.id.questionLabel);
+            questionLabel = view.findViewById(R.id.questionLabel);
             questionLabel.setText(Html.fromHtml(question.question.trim()));
             questionLabel.setVisibility(View.VISIBLE);
 
@@ -100,7 +98,7 @@ public class MultipleChoiceQuestionFragment extends Fragment {
         if(question.question2 != null && !question.question2.equals("")){
 
             //assign question2 from realm to question after image
-            questionBottomLabel = (TextView) view.findViewById(R.id.questionBottomLabel);
+            questionBottomLabel = view.findViewById(R.id.questionBottomLabel);
             questionBottomLabel.setText(Html.fromHtml(question.question2.trim()));
             questionBottomLabel.setVisibility(View.VISIBLE);
 
@@ -111,7 +109,7 @@ public class MultipleChoiceQuestionFragment extends Fragment {
 
 
             //get image view
-            questionImageView = (ImageView) view.findViewById(R.id.questionImageView);
+            questionImageView = view.findViewById(R.id.questionImageView);
 
             //set image
             questionImageView.setImageBitmap(MyApplication.Base64ToBitmap(question.questionImage));

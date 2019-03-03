@@ -1,26 +1,47 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/question_background"
-    android:isScrollContainer="false"
-    android:orientation="vertical">
+    android:background="@drawable/question_background">
 
     <TextView
         android:id="@+id/questionNumberLabel"
         style="@style/titleText"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@drawable/question_title_background"
+        android:layout_width="wrap_content"
+        android:layout_height="22dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center_vertical|center_horizontal"
-        android:text="Question 1 of 5" />
+        android:text="Question 1 of 5"
+        android:textColor="@color/colorDarkGrey"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_report" />
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/questionNumberLabel">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,22 +49,12 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/allocatedMarksLabel"
-                style="@style/smallText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="(2 marks allocated)"
-                android:textSize="16sp" />
-
-            <TextView
                 android:id="@+id/questionLabel"
                 style="@style/genericText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_margin="10dp"
                 android:text="text before image"
-                android:textSize="18sp"
                 android:visibility="gone" />
 
             <ImageView
@@ -59,21 +70,32 @@
                 style="@style/genericText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_margin="10dp"
                 android:text="text after image"
-                android:textSize="18sp"
                 android:visibility="gone" />
 
             <com.tecknologick.studybuddy.Adapters.ExpandableHeightListView
                 android:id="@+id/multipleChoiceQuestionsListView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:divider="@color/colorLightGrey"
-                android:dividerHeight="1dp"
+                android:layout_marginStart="10dp"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="2dp"
                 android:footerDividersEnabled="true"
                 android:headerDividersEnabled="true" />
         </LinearLayout>
     </ScrollView>
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>
+
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:background="@drawable/question_background"-->
+    <!--android:isScrollContainer="false"-->
+    <!--android:orientation="vertical">-->
+
+
+<!--</LinearLayout>-->
 

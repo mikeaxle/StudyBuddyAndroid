@@ -11,8 +11,7 @@
         android:id="@+id/moduleToolBar"
         style="@style/genericToolBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBgGray"
+        android:layout_height="75dp"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme">
 
@@ -25,16 +24,11 @@
             <TextView
                 android:id="@+id/moduleTitleLabel"
                 style="@style/titleText"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center" />
 
-            <Button
-                android:id="@+id/changeGradeButton"
-                style="@style/changeGradeButton"
-                android:onClick="onClick"
-                android:text="Change Course" />
         </LinearLayout>
 
     </android.support.v7.widget.Toolbar>
@@ -44,18 +38,22 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:animateLayoutChanges="true">
+        android:animateLayoutChanges="true"
+        android:background="@color/colorLightGrey">
 
     </FrameLayout>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="78dp"
         android:layout_gravity="bottom"
-        android:background="@color/colorBgGray"
-        app:itemIconTint="@color/colorItemTint"
-        app:itemTextColor="@color/colorItemTint"
+        android:background="@android:color/background_light"
+        app:itemIconTint="@drawable/bottom_navigation_colors"
+        app:itemTextColor="@drawable/bottom_navigation_colors"
+        app:labelVisibilityMode="labeled"
+        app:itemTextAppearanceActive="@style/BottomNavigationView.Active"
+        app:itemTextAppearanceInactive="@style/BottomNavigationView"
         app:menu="@menu/navigation" />
 
 </LinearLayout>

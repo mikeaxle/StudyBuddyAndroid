@@ -3,6 +3,7 @@ package com.tecknologick.studybuddy;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -28,11 +29,45 @@ public class ResultActivity extends AppCompatActivity {
     boolean hasNextSection;
     int currentSection;
     TinyDB tinyDB;
+    Toolbar toolbar;
+    Intent i;
+    int[] courseID_moduleID_paperID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
+
+        //set details array to use to go back to previous
+        courseID_moduleID_paperID = (int[]) getIntent().getExtras().get("courseID_moduleID_paperID");
+
+        //set up navigation button
+        toolbar = (Toolbar) findViewById(R.id.ResultToolBar);
+        toolbar.setNavigationOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+
+                //create intent to go to previous page
+                i = new Intent(getApplicationContext(), PaperActivity.class);
+
+                //get course id and module id from courseID_moduleID_paperID array
+                int[] courseID_moduleID = new int[]{courseID_moduleID_paperID[0],courseID_moduleID_paperID[1]};
+
+                //add as intent extra
+                i.putExtra("courseID_moduleID", courseID_moduleID);
+
+                //destroy stack
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                //start activity
+                startActivity(i);
+
+                //destroy current activity
+                finish();
+
+
+            }
+        });
 
         //get exit paper/ next section button
         exitPaperNextButton = (Button) findViewById(R.id.exitPaperButton);
@@ -125,8 +160,8 @@ public class ResultActivity extends AppCompatActivity {
     //set rewrite button and exit button listeners
     public void onClick(View view){
 
-        Intent i = null;
-        int[] courseID_moduleID_paperID = (int[]) getIntent().getExtras().get("courseID_moduleID_paperID");
+
+
 
         switch (view.getId()){
 

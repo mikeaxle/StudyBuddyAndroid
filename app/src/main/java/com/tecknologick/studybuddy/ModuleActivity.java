@@ -21,7 +21,7 @@ public class ModuleActivity extends AppCompatActivity {
 
     //TODO: change bottom navigation to tabs if necessary
 
-    //get bottom navigation
+    // set bottom navigation
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
 
@@ -35,23 +35,24 @@ public class ModuleActivity extends AppCompatActivity {
             //switch...case to determine selected item
             switch (item.getItemId()) {
 
-                //case of modules/subjects
+                //case of past papers
                 case R.id.navigation_subjects:
-
-                    //selected fragment is assigned as module fragment instance
                     selectedFragment = ModuleFragment.newInstance();
                     break;
 
-                //case of marks/progress
-                case R.id.navigation_marks:
-
-                    //selected fragment is assigned as module fragment instance
+                //case of progress
+                case R.id.navigation_progress:
                     selectedFragment = MarksFragment.newInstance();
                     break;
 
-                //case of more papers aka store
-                case R.id.navigation_more_papers:
+                //case of settings
+                case R.id.navigation_settings:
                     selectedFragment = StoreFragment.newInstance();
+                    break;
+
+                // case of help
+                case R.id.navigation_help:
+                    selectedFragment = MarksFragment.newInstance();
                     break;
             }
 
@@ -81,9 +82,9 @@ public class ModuleActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.moduleToolBar);
 
         //set up button
-        toolbar.setNavigationOnClickListener( new View.OnClickListener() {
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 i = new Intent(getApplicationContext(), CourseActivity.class);
                 startActivity(i);
                 finish();
@@ -95,25 +96,10 @@ public class ModuleActivity extends AppCompatActivity {
 
     }
 
-    //set change grade button
-    public void onClick(View view){
-
-        //send back to course page, clear stack
-        i = new Intent(this, CourseActivity.class);
-
-        //remove shared prefs value of module
-        //tinyDB = new TinyDB(this);
-        //tinyDB.putInt("courseID", 0);
-
-        //start activity
-        startActivity(i);
-        finish();
-    }
-
 
     //override hardware back button
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         //show alert dialog
         alert.setTitle("Exit App");
         alert.setMessage("Would you like to exit Study Buddy?")

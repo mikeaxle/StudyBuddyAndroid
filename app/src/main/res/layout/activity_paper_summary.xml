@@ -2,7 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorDeepPurple"
+    android:background="@color/colorLightGrey"
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
@@ -12,20 +12,21 @@
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:navigationIcon="@drawable/ic_curved_up_black">
+        app:navigationIcon="@drawable/ic_cancel">
 
         <TextView
             android:id="@+id/paperSummaryTitleLabel"
             style="@style/titleText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="title" />
+            android:text="title"
+            android:textColor="@color/colorDarkGrey" />
     </android.support.v7.widget.Toolbar>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="10dp"
+        android:layout_marginTop="10dp"
         android:layout_weight="1"
         android:background="@drawable/paper_summary_background"
         android:isScrollContainer="false"
@@ -38,6 +39,8 @@
             android:layout_height="match_parent"
             android:layout_weight="4"
             android:text="details"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <ListView
@@ -49,15 +52,12 @@
             android:divider="@android:color/transparent"
             android:footerDividersEnabled="false"
             android:headerDividersEnabled="false" />
+        <Button
+            android:id="@+id/beginPaperButton"
+            style="@style/PaperButton"
+            android:background="@drawable/begin_exam_button_background"
+            android:onClick="onClick"
+            android:text="@string/begin_exam" />
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/beginPaperButton"
-        style="@style/PaperButton"
-        android:background="@drawable/begin_exam_button_background"
-        android:onClick="onClick"
-        android:text="@string/begin_exam" />
-
-
 </LinearLayout>

@@ -13,10 +13,10 @@
         android:id="@+id/sectionImageView"
         android:layout_width="65dp"
         android:layout_height="65dp"
-        android:background="@drawable/paper_summary_icon_border"
+        android:background="@android:color/transparent"
         android:padding="10dp"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/ic_assignment_black_24dp" />
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/ic_padlock" />
 
     <TextView
         android:id="@+id/sectionNameLabel"
@@ -26,6 +26,7 @@
         android:layout_marginLeft="20dp"
         android:layout_weight="1"
         android:text="TextView"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
         android:textStyle="bold" />
 </LinearLayout>

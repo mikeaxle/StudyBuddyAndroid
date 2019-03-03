@@ -6,12 +6,10 @@
     android:orientation="vertical">
 
 
-    <!-- TODO: change to recyclerview -->
-    <ListView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/moduleListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@color/colorLightGrey"
-        android:dividerHeight="2dp" />
+        android:background="@color/colorLightGrey" />
 
 </LinearLayout>

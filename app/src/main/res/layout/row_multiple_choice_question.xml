@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/multipleChoiceQuestionRowLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/white"
+    android:background="@drawable/multiple_choice_question_background"
     android:descendantFocusability="blocksDescendants"
     android:gravity="center_vertical"
     android:orientation="horizontal"
@@ -17,7 +18,7 @@
         android:background="@drawable/multple_choice_letter_background"
         android:gravity="center"
         android:text="A"
-        android:textColor="@android:color/black" />
+        android:textColor="@color/colorDarkGrey" />
 
     <TextView
         android:id="@+id/multipleChoiceQuestionRowQuestionLabel"
@@ -26,10 +27,10 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_weight="10"
-        android:paddingBottom="5dp"
         android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         android:text="Option here"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/white"
         android:textSize="18sp" />
 
     <ImageView

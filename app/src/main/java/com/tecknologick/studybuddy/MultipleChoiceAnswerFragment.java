@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.tecknologick.studybuddy.Adapters.UlTagHandler;
+
 
 public class MultipleChoiceAnswerFragment extends Fragment {
 
@@ -81,20 +83,20 @@ public class MultipleChoiceAnswerFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_multiple_choice_answer, container, false);
 
         //get text views
-        statusAnswerLabel = (TextView) view.findViewById(R.id.statusAnswerLabel);
-        answerAnswerLabel = (TextView) view.findViewById(R.id.answerAnswerLabel);
-        selectedAnswerLabel = (TextView) view.findViewById(R.id.selectedAnswerLabel);
+        statusAnswerLabel = view.findViewById(R.id.statusAnswerLabel);
+        answerAnswerLabel = view.findViewById(R.id.testy).findViewById(R.id.multipleChoiceQuestionRowQuestionLabel);
+        selectedAnswerLabel = view.findViewById(R.id.testy2).findViewById(R.id.multipleChoiceQuestionRowQuestionLabel);
 
         //set text views
-        selectedAnswerLabel.setText(Html.fromHtml("<b>Your answer:</b> " + selectedAnswer.trim()));
-        answerAnswerLabel.setText(Html.fromHtml("<b>Correct answer:</b> " + answer.trim()));
+        selectedAnswerLabel.setText(Html.fromHtml(selectedAnswer.trim()));
+        answerAnswerLabel.setText(Html.fromHtml(answer.trim()));
 
         //check if there is a question before the image
         if(question != null && !question.equals("")){
 
             //get and set text view
-            questionAnswerLabel = (TextView) view.findViewById(R.id.questionAnswerLabel);
-            questionAnswerLabel.setText(Html.fromHtml(question));
+            questionAnswerLabel = view.findViewById(R.id.questionAnswerLabel);
+            questionAnswerLabel.setText(Html.fromHtml(question.trim(), null, new UlTagHandler()));
 
             //make visible
             questionAnswerLabel.setVisibility(View.VISIBLE);
@@ -104,8 +106,8 @@ public class MultipleChoiceAnswerFragment extends Fragment {
         if(question2 != null && !question2.equals("")){
 
             //get and set text view
-            questionAnswerBelowLabel = (TextView) view.findViewById(R.id.questionAnswerBelowLabel);
-            questionAnswerBelowLabel.setText(Html.fromHtml(question2));
+            questionAnswerBelowLabel = view.findViewById(R.id.questionAnswerBelowLabel);
+            questionAnswerBelowLabel.setText(Html.fromHtml(question2.trim(), null, new UlTagHandler()));
 
             //make visible
             questionAnswerBelowLabel.setVisibility(View.VISIBLE);
@@ -115,7 +117,7 @@ public class MultipleChoiceAnswerFragment extends Fragment {
         if(questionImage != null && !questionImage.equals("")){
 
             //get answer image button
-            questionImageButton = (ImageButton) view.findViewById(R.id.questionAnswerImageButton);
+            questionImageButton = view.findViewById(R.id.questionAnswerImageButton);
 
             //convert base64 string to image
             final Bitmap bitmap = MyApplication.Base64ToBitmap(questionImage);
@@ -130,10 +132,10 @@ public class MultipleChoiceAnswerFragment extends Fragment {
 
         //set layout background color & status label based on value of correct
         if(correct){
-            statusAnswerLabel.setText("Correct");
-            statusAnswerLabel.setBackground(ContextCompat.getDrawable(getActivity().getApplicationContext(), R.drawable.answer_background));
+            statusAnswerLabel.setText(getResources().getString(R.string.correct));
+            statusAnswerLabel.setBackground(ContextCompat.getDrawable(getActivity().getApplicationContext(), R.drawable.answer_correct_background));
         } else {
-            statusAnswerLabel.setText("Wrong");
+            statusAnswerLabel.setText(getResources().getString(R.string.wrong));
             statusAnswerLabel.setBackground(ContextCompat.getDrawable(getActivity().getApplicationContext(), R.drawable.answer_wrong_background));
         }
 
@@ -141,7 +143,7 @@ public class MultipleChoiceAnswerFragment extends Fragment {
         if(explanation != null && !explanation.equals("")){
 
             //get and set explanation textview
-            explanationAnswerLabel = (TextView) view.findViewById(R.id.explanationAnswerLabel);
+            explanationAnswerLabel = view.findViewById(R.id.explanationAnswerLabel);
             explanationAnswerLabel.setText(Html.fromHtml("<b>Explanation:</b> " + explanation.trim()));
 
             //show textview
@@ -153,7 +155,7 @@ public class MultipleChoiceAnswerFragment extends Fragment {
         if(answerImage != null && !answerImage.equals("")){
 
             //get answer image button
-            answerImageButton = (ImageButton) view.findViewById(R.id.multipleChoiceAnswerImageButton);
+            answerImageButton = view.findViewById(R.id.multipleChoiceAnswerImageButton);
 
             //convert base64 string to image
             final Bitmap bitmap = MyApplication.Base64ToBitmap(answerImage);

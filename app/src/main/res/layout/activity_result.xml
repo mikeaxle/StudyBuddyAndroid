@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme">
+        android:theme="?attr/actionBarTheme"
+        app:navigationIcon="@drawable/ic_close_black_24dp">
 
         <TextView
             android:id="@+id/resultTitleLabel"
@@ -19,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="English Paper 1 (2014)"
-            android:textAlignment="center" />
+            android:textSize="14sp" />
     </android.support.v7.widget.Toolbar>
 
     <LinearLayout

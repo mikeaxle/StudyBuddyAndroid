@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.chrisbanes.photoview.PhotoView;
+import com.tecknologick.studybuddy.Adapters.UlTagHandler;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -50,7 +51,6 @@ public class EssayAnswerFragment extends Fragment {
     TextToSpeech textToSpeech;
     boolean readingFlag = false;
     View view;
-
 
     public EssayAnswerFragment() {
         // Required empty public constructor
@@ -86,8 +86,7 @@ public class EssayAnswerFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_essay_answer, container, false);
 
@@ -96,10 +95,11 @@ public class EssayAnswerFragment extends Fragment {
         readAloudAnswserLabel = (TextView) view.findViewById(R.id.readAloudAnswserLabel);
 
         //set text view
-        essayQuestionAnswerLabel.setText(Html.fromHtml(answer.trim()));
+        essayQuestionAnswerLabel.setText(Html.fromHtml(answer.trim(), null, new UlTagHandler()));
 
         //check if question has an image
         if(answerImage != null && !answerImage.equals("")){
+
             //get image view
             essayAnswerImageView = (ImageView) view.findViewById(R.id.EssayAnswerImageView);
 
@@ -163,7 +163,8 @@ public class EssayAnswerFragment extends Fragment {
 
                 } else {
 
-                    textToSpeech.speak(answer, TextToSpeech.QUEUE_FLUSH, params);
+                    String readableText = android.text.Html.fromHtml(answer).toString();
+                    textToSpeech.speak(readableText, TextToSpeech.QUEUE_FLUSH, params);
                     readingFlag = true;
 
                 }

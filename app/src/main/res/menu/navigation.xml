@@ -3,16 +3,21 @@
 
     <item
         android:id="@+id/navigation_subjects"
-        android:icon="@drawable/ic_subject_black_24dp"
+        android:icon="@drawable/ic_past_papers"
         android:title="@string/title_subjects" />
 
     <item
-        android:id="@+id/navigation_marks"
-        android:icon="@drawable/ic_assignment_black_24dp"
-        android:title="@string/title_marks" />
+        android:id="@+id/navigation_progress"
+        android:icon="@drawable/ic_progress"
+        android:title="@string/title_progress" />
 
     <item
-        android:id="@+id/navigation_more_papers"
-        android:icon="@drawable/ic_system_update_alt_black_24dp"
-        android:title="@string/title_more_papers" />
+        android:id="@+id/navigation_settings"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/title_settings" />
+
+    <item
+        android:id="@+id/navigation_help"
+        android:icon="@drawable/ic_support"
+        android:title="@string/title_help" />
 </menu>

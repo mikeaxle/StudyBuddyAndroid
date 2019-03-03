@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.chrisbanes.photoview.PhotoView;
+import com.tecknologick.studybuddy.Adapters.UlTagHandler;
 import com.tecknologick.studybuddy.RealmClasses.Question;
 
 import java.util.HashMap;
@@ -103,7 +104,7 @@ public class EssayQuestionFragment extends Fragment {
 
             //assign question from realm to question before image
             essayQuestionLabel = (TextView) view.findViewById(R.id.essayQuestionLabel);
-            essayQuestionLabel.setText(Html.fromHtml(question.question.trim()));
+            essayQuestionLabel.setText(Html.fromHtml(question.question.trim(), null, new UlTagHandler()));
             essayQuestionLabel.setVisibility(View.VISIBLE);
 
         }
@@ -113,7 +114,7 @@ public class EssayQuestionFragment extends Fragment {
 
             //assign question2 from realm to question after image
             essayQuestionBottomLabel = (TextView) view.findViewById(R.id.essayQuestionBottomLabel);
-            essayQuestionBottomLabel.setText(Html.fromHtml(question.question2.trim()));
+            essayQuestionBottomLabel.setText(Html.fromHtml(question.question2.trim(), null, new UlTagHandler() ));
             essayQuestionBottomLabel.setVisibility(View.VISIBLE);
 
         }
@@ -230,7 +231,20 @@ public class EssayQuestionFragment extends Fragment {
 
                 } else {
 
-                    textToSpeech.speak(question.question, TextToSpeech.QUEUE_FLUSH, params);
+                    //remove html tags from text
+                    String readableText = android.text.Html.fromHtml(question.question).toString();
+
+                    //check if question 2 is set
+                    if(question.question2 != null && !question.question2.equals("")){
+
+                        //concat with question 1
+                        readableText += android.text.Html.fromHtml("." + question.question2).toString();
+                    }
+
+                    //read aloud
+                    textToSpeech.speak(readableText, TextToSpeech.QUEUE_FLUSH, params);
+
+
                     readingFlag = true;
 
                 }

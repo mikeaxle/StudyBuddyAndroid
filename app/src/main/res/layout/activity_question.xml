@@ -1,5 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBgGray"
@@ -11,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme">
+        android:theme="?attr/actionBarTheme"
+        app:navigationIcon="@drawable/ic_cancel">
 
         <TextView
             android:id="@+id/questionTitleLabel"
@@ -19,14 +21,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="title"
-            android:textAlignment="center" />
+            android:textColor="@color/colorDarkGrey" />
     </android.support.v7.widget.Toolbar>
 
     <com.tecknologick.studybuddy.Adapters.QuestionViewPager
         android:id="@+id/questionPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="10dp"
         android:layout_weight="1"></com.tecknologick.studybuddy.Adapters.QuestionViewPager>
 
     <Button

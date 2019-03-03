@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -35,13 +36,13 @@ public class QuestionActivity extends AppCompatActivity implements QuestionViewP
     QuestionViewPager pager;
     int currentSection;
     String questionType;
+    Toolbar toolbar;
     
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
-        
 
         //init dialog box
         alert = new AlertDialog.Builder(this);
@@ -86,19 +87,31 @@ public class QuestionActivity extends AppCompatActivity implements QuestionViewP
         adapter = new QuestionAdapter(getFragmentManager(), questions.size(), questions.first().type);
 
         //init pager & set adapter
-        pager = (QuestionViewPager) findViewById(R.id.questionPager);
+        pager = findViewById(R.id.questionPager);
         pager.setAdapter(adapter);
         pager.setPageMargin(20);
         pager.setPageTransformer(true, new DepthPageTransformer());
         pager.setOnSwipeOutListener(this);
 
         //set paper title
-        titleText = (TextView) findViewById(R.id.questionTitleLabel);
-        titleText.setText(course.get(0).modules.where().equalTo("id",courseID_moduleID_paperID[1]).findFirst().name +  " " + paper.name + " (" + paper.year + ")");
+        titleText = findViewById(R.id.questionTitleLabel);
+        titleText.setText(paper.name + ": " + paper.year);
+
+
+        //set navigation click listener
+        toolbar = findViewById(R.id.questionToolBar);
+        toolbar.setNavigationOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+
+                //end paper button on clicked even handler
+                onClicked(findViewById(R.id.endPaperButton));
+            }
+        });
     }
 
     //set end paper button click listener
-    public void onClick (View view){
+    public void onClicked (View view){
 
         //TODO: style dialog box
 
@@ -109,7 +122,7 @@ public class QuestionActivity extends AppCompatActivity implements QuestionViewP
             case R.id.endPaperButton:
                 //show alert dialog
                 alert.setTitle("End Exam");
-                alert.setMessage("Would you quit this paper?")
+                alert.setMessage("Would you like to quit this exam paper?")
                         //continue paper
                         .setPositiveButton("No", new DialogInterface.OnClickListener() {
                             @Override
@@ -215,7 +228,7 @@ public class QuestionActivity extends AppCompatActivity implements QuestionViewP
     public void onBackPressed(){
 
         //end paper button on click even handler
-       onClick(findViewById(R.id.endPaperButton));
+       onClicked(findViewById(R.id.endPaperButton));
 
     }
 

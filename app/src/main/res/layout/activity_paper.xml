@@ -1,18 +1,18 @@
-<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/paperToolBar"
         style="@style/genericToolBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorBgGray"
-        android:minHeight="?attr/actionBarSize"
+        android:background="#fff"
         android:theme="?attr/actionBarTheme"
-        app:navigationIcon="@drawable/ic_curved_up_black">
+        app:navigationIcon="@drawable/ic_arrow_left_right">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,36 +24,20 @@
                 style="@style/titleText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:textColor="@color/colorDarkGrey" />
 
         </LinearLayout>
 
     </android.support.v7.widget.Toolbar>
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/colorPrimary"
-        android:gravity="center_vertical"
-        android:padding="10dp">
-
-        <TextView
-            android:id="@+id/numberOfPapersLabel"
-            style="@style/titleText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="x papers on this device" />
-
-    </LinearLayout>
-
-    <!-- TODO: change to recyclerview -->
-    <ListView
-        android:id="@+id/paperListView"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/paperRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
-        android:divider="@color/colorLightGrey"
-        android:dividerHeight="2dp" />
+        android:layout_marginTop="10dp"
+        android:background="@drawable/paper_list_background"
+        android:orientation="vertical"
+        android:paddingTop="30dp" />
 
 </LinearLayout>

@@ -1,33 +1,59 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/multipleChoiceAnswerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/question_background"
-    android:orientation="vertical">
+    android:background="@drawable/question_background">
 
     <TextView
         android:id="@+id/statusAnswerLabel"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:height="65dp"
-        android:background="@drawable/answer_background"
+        android:layout_width="wrap_content"
+        android:layout_height="22dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/answer_correct_background"
         android:gravity="center_vertical|center_horizontal"
-        android:minHeight="65dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:text="Correct"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/questionAnswerReportButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_report" />
 
     <ScrollView
+        android:id="@+id/scrollView3"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
         android:layout_weight="1"
-        android:padding="10dp">
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/nextAnswerButton"
+        app:layout_constraintTop_toBottomOf="@+id/statusAnswerLabel">
+
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:orientation="vertical"
             tools:ignore="ScrollViewSize">
 
@@ -37,10 +63,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingBottom="20dp"
                 android:paddingTop="10dp"
-                android:text="TextView"
-                android:textSize="18dp"
+                android:paddingBottom="20dp"
+                android:text="answer"
                 android:visibility="gone"
                 tools:ignore="SpUsage" />
 
@@ -48,10 +73,10 @@
                 android:id="@+id/questionAnswerImageButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:contentDescription=""
                 android:padding="10dp"
                 android:scaleType="fitCenter"
                 android:visibility="gone"
-                android:contentDescription=""
                 tools:ignore="ContentDescription" />
 
             <TextView
@@ -60,10 +85,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingBottom="20dp"
                 android:paddingTop="10dp"
+                android:paddingBottom="20dp"
                 android:text="TextView"
-                android:textSize="18dp"
                 android:visibility="gone"
                 tools:ignore="SpUsage" />
 
@@ -73,10 +97,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingBottom="20dp"
                 android:paddingTop="20dp"
-                android:text="TextView"
-                android:textSize="18sp" />
+                android:paddingBottom="20dp"
+                android:text="@string/selected_answer"
+                android:textStyle="bold" />
+
+            <include
+                android:id="@+id/testy2"
+                layout="@layout/row_multiple_choice_question"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/answerAnswerLabel"
@@ -84,19 +115,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingBottom="20dp"
                 android:paddingTop="20dp"
-                android:text="TextView"
-                android:textSize="18sp" />
+                android:paddingBottom="20dp"
+                android:text="@string/correct_answer"
+                android:textStyle="bold" />
+
+            <include
+                android:id="@+id/testy"
+                layout="@layout/row_multiple_choice_question"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
             <ImageButton
                 android:id="@+id/multipleChoiceAnswerImageButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:contentDescription=""
                 android:padding="10dp"
                 android:scaleType="fitCenter"
                 android:visibility="gone"
-                android:contentDescription=""
                 tools:ignore="ContentDescription" />
 
             <TextView
@@ -105,10 +143,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingBottom="20dp"
                 android:paddingTop="20dp"
+                android:paddingBottom="20dp"
                 android:text="TextView"
-                android:textSize="18sp"
                 android:visibility="gone" />
 
         </LinearLayout>
@@ -117,10 +154,8 @@
     <Button
         android:id="@+id/nextAnswerButton"
         style="@style/NextButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
         android:background="@drawable/next_button_background"
-        android:onClick="onClick"
-        android:text="Next" />
-</LinearLayout>
+        android:onClick="onClicked"
+        android:text="@string/next_question"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</android.support.constraint.ConstraintLayout>
