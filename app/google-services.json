@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "902005350783",
+    "firebase_url": "https://studybuddy-abf65.firebaseio.com",
+    "project_id": "studybuddy-abf65",
+    "storage_bucket": "studybuddy-abf65.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:902005350783:android:1f92fb0c445d6637827a4a",
+        "android_client_info": {
+          "package_name": "com.tecknologick.studybuddy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "902005350783-2avjvobnf16jq4jbic9q3an2egfcfbl7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFrZEl1P1EJOZFl-5IND1K5kI1i-ZDix4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "902005350783-2avjvobnf16jq4jbic9q3an2egfcfbl7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
