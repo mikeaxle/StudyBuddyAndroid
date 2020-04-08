@@ -1,11 +1,13 @@
 package com.tecknologick.studybuddy.Adapters;
 
 import android.content.Context;
-import android.support.v4.view.MotionEventCompat;
+import androidx.core.view.MotionEventCompat;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
-public class QuestionViewPager extends android.support.v4.view.ViewPager {
+import androidx.viewpager.widget.ViewPager;
+
+public class QuestionViewPager extends ViewPager {
 
     float mStartDragX;
     OnSwipeOutListener mOnSwipeOutListener;

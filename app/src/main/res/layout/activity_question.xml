@@ -6,7 +6,7 @@
     android:background="@color/colorBgGray"
     android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/questionToolBar"
         style="@style/paperToolBar"
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:text="title"
             android:textColor="@color/colorDarkGrey" />
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 
     <com.tecknologick.studybuddy.Adapters.QuestionViewPager
         android:id="@+id/questionPager"

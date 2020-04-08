@@ -5,7 +5,7 @@
     android:background="@color/colorDeepPurple"
     android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/ResultToolBar"
         style="@style/paperToolBar"
         android:layout_width="match_parent"
@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:text="English Paper 1 (2014)"
             android:textSize="14sp" />
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
         android:layout_width="match_parent"
