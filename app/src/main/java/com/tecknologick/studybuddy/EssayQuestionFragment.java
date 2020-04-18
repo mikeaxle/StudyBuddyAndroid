@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,9 +24,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.chrisbanes.photoview.PhotoView;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 import com.tecknologick.studybuddy.Adapters.UlTagHandler;
 import com.tecknologick.studybuddy.RealmClasses.Question;
 
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Locale;
 
@@ -35,7 +39,8 @@ public class EssayQuestionFragment extends Fragment {
     // Hold a reference to the current animator, so that it can be canceled mid-way.
     private Animator mCurrentAnimator;
 
-    //The system "short" animation time duration, in milliseconds. This duration is ideal for subtle animations or animations that occur very frequently.
+    // The system "short" animation time duration, in milliseconds.
+    // This duration is ideal for subtle animations or animations that occur very frequently.
     private int mShortAnimationDuration;
 
     //variable to store fragment value
@@ -52,10 +57,10 @@ public class EssayQuestionFragment extends Fragment {
     TextToSpeech textToSpeech;
     boolean readingFlag = false;
     View view;
+    Bitmap bitmap = null;
 
-    //create new instance of fragment using num as argument
+    // create new instance of fragment using num as argument
     public static EssayQuestionFragment newInstance(int num){
-
         //instantiate fragment
         EssayQuestionFragment eqf = new EssayQuestionFragment();
 
@@ -66,7 +71,6 @@ public class EssayQuestionFragment extends Fragment {
 
         //return fragment
         return eqf;
-
     }
 
     //get arguments on create
@@ -121,12 +125,30 @@ public class EssayQuestionFragment extends Fragment {
 
         //check if question has an image
         if(question.questionImage != null && !question.questionImage.equals("")){
-
             //get image view
             essayQuestionImageView = (ImageButton) view.findViewById(R.id.essayQuestionImageView);
 
-            //convert image to bitmap
-            final Bitmap bitmap = MyApplication.Base64ToBitmap(question.questionImage);
+            // declare bitmap
+            Bitmap bitmapTemp = null;
+
+//            // check if questionImage is url, starts with 'http'
+            String compare = question.questionImage.toString().substring(0, 4);
+            if (compare.equals("http")) {
+                // convert url to bitmap
+
+                ImageLoader imageLoader = ImageLoader.getInstance();
+
+                // TODO: put in async thread
+
+                bitmapTemp = imageLoader.loadImageSync(question.questionImage);
+
+            } else {
+                //convert base64 string to bitmap
+                Log.d(MyApplication.TAG, "image is BASE64");
+                bitmapTemp = MyApplication.Base64ToBitmap(question.questionImage);
+            }
+
+            bitmap = bitmapTemp;
 
             //set image
             essayQuestionImageView.setImageBitmap(bitmap);

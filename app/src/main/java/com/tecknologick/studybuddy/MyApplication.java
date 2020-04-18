@@ -5,11 +5,16 @@ import android.app.Application;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
+import android.util.Log;
+
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 
 import io.realm.DynamicRealm;
 import io.realm.Realm;
@@ -58,6 +63,11 @@ public class MyApplication extends Application {
     public void onCreate() {
 
         super.onCreate();
+
+        // Create global configuration and initialize ImageLoader with this config
+        ImageLoaderConfiguration imageLoaderConfig = new ImageLoaderConfiguration.Builder(this)
+			.build();
+        ImageLoader.getInstance().init(imageLoaderConfig);
 
 
         //Set true to overwrite database - Optional
@@ -146,6 +156,19 @@ public class MyApplication extends Application {
         byte[] imageAsBytes = Base64.decode(myImageData.getBytes(),Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
     }
+
+    // function to covert string url to bitmap
+//    public static Bitmap ulrToBitmap (String url)
+//    {
+//        Bitmap bitmap = null;
+//        try {
+//            URL imageUrl = new URL(url);
+//            bitmap = BitmapFactory.decodeStream(imageUrl.openConnection().getInputStream());
+//        } catch (IOException e) {
+//            Log.e(TAG, "error: " + e.getMessage());
+//        }
+//        return bitmap;
+//    }
 
 
 }
