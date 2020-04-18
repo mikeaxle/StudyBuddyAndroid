@@ -2,14 +2,14 @@ apply plugin: 'com.android.application'
 apply plugin: 'realm-android'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.tecknologick.studybuddy"
         minSdkVersion 17
-        targetSdkVersion 28
-        versionCode 5
-        versionName "0.44"
+        targetSdkVersion 29
+        versionCode 6
+        versionName "0.45"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }

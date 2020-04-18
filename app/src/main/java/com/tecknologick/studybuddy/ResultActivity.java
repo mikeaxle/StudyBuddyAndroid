@@ -83,7 +83,6 @@ public class ResultActivity extends AppCompatActivity {
             exitPaperNextButton.setText("End Paper");
         }
 
-
         //get text views
         resultTitle = (TextView) findViewById(R.id.resultTitleLabel);
         resultPercentage = (TextView) findViewById(R.id.resultPercentageLabel);

@@ -43,7 +43,7 @@
                 android:adjustViewBounds="false"
                 android:background="@android:color/transparent"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_logo_new"
+                android:src="@drawable/ic_logo_gradient"
                 app:layout_constraintBottom_toTopOf="@+id/moduleRowLabel"
                 app:layout_constraintEnd_toEndOf="@+id/moduleRowLabel"
                 app:layout_constraintStart_toStartOf="@+id/moduleRowLabel"
