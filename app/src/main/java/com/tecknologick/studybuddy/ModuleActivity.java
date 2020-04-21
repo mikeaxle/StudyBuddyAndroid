@@ -41,14 +41,14 @@ public class ModuleActivity extends AppCompatActivity {
                     break;
 
                 //case of progress
-                case R.id.navigation_progress:
-                    selectedFragment = MarksFragment.newInstance();
-                    break;
+//                case R.id.navigation_progress:
+//                    selectedFragment = MarksFragment.newInstance();
+//                    break;
 
                 //case of settings
-                case R.id.navigation_settings:
-                    selectedFragment = StoreFragment.newInstance();
-                    break;
+//                case R.id.navigation_settings:
+//                    selectedFragment = StoreFragment.newInstance();
+//                    break;
 
                 // case of help
                 case R.id.navigation_help:

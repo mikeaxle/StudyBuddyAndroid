@@ -6,15 +6,15 @@
         android:icon="@drawable/ic_past_papers"
         android:title="@string/title_subjects" />
 
-    <item
-        android:id="@+id/navigation_progress"
-        android:icon="@drawable/ic_progress"
-        android:title="@string/title_progress" />
+<!--    <item-->
+<!--        android:id="@+id/navigation_progress"-->
+<!--        android:icon="@drawable/ic_progress"-->
+<!--        android:title="@string/title_progress" />-->
 
-    <item
-        android:id="@+id/navigation_settings"
-        android:icon="@drawable/ic_settings"
-        android:title="@string/title_settings" />
+<!--    <item-->
+<!--        android:id="@+id/navigation_settings"-->
+<!--        android:icon="@drawable/ic_settings"-->
+<!--        android:title="@string/title_settings" />-->
 
     <item
         android:id="@+id/navigation_help"
