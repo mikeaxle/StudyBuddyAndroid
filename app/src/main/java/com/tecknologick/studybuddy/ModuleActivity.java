@@ -52,7 +52,7 @@ public class ModuleActivity extends AppCompatActivity {
 
                 // case of help
                 case R.id.navigation_help:
-                    selectedFragment = MarksFragment.newInstance();
+                    selectedFragment = HelpFragment.newInstance();
                     break;
             }
 
@@ -121,5 +121,13 @@ public class ModuleActivity extends AppCompatActivity {
                 });
         alert.create();
         alert.show();
+    }
+
+    // go to brainstein papers
+    public void openBrainsteinStudent(View view) {
+        Intent launchIntent = getPackageManager().getLaunchIntentForPackage("co.brainstein.student");
+        if (launchIntent != null) {
+            startActivity(launchIntent);//null pointer check in case package name was not found
+        }
     }
 }

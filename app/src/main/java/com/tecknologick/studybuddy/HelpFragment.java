@@ -1,6 +1,7 @@
 package com.tecknologick.studybuddy;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,11 +10,11 @@ import android.view.ViewGroup;
 
     //TODO: add store fragment functionality
 
-public class StoreFragment extends Fragment {
+public class HelpFragment extends Fragment {
 
     //method to instantiate fragment
-    public static StoreFragment newInstance() {
-        return new StoreFragment();
+    public static HelpFragment newInstance() {
+        return new HelpFragment();
     }
 
     @Override
@@ -26,7 +27,6 @@ public class StoreFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_store, container, false);
+        return inflater.inflate(R.layout.fragment_help, container, false);
     }
-
 }
