@@ -1,0 +1,106 @@
+{
+  "project_info": {
+    "project_number": "435948304257",
+    "firebase_url": "https://brainstein-temp.firebaseio.com",
+    "project_id": "brainstein-temp",
+    "storage_bucket": "brainstein-temp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:435948304257:android:8779431ee6ba5390635a80",
+        "android_client_info": {
+          "package_name": "co.brainstein.student"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "435948304257-alfmd919rp848tsnr0n7na2ukah0cojs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxwwmUWKnjD8T-JiT6yVXeK8whNC990sM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "435948304257-alfmd919rp848tsnr0n7na2ukah0cojs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:435948304257:android:c0cea46e0080b29c635a80",
+        "android_client_info": {
+          "package_name": "co.brainstein.tutor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "435948304257-alfmd919rp848tsnr0n7na2ukah0cojs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxwwmUWKnjD8T-JiT6yVXeK8whNC990sM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "435948304257-alfmd919rp848tsnr0n7na2ukah0cojs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:435948304257:android:538c064cda203ee2635a80",
+        "android_client_info": {
+          "package_name": "com.tecknologick.studybuddy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "435948304257-u72m8gi7rir54vfida7vhtc4sqm34qmn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tecknologick.studybuddy",
+            "certificate_hash": "e6f27879a818b6e088a56e0d8d4448bafbc82311"
+          }
+        },
+        {
+          "client_id": "435948304257-alfmd919rp848tsnr0n7na2ukah0cojs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxwwmUWKnjD8T-JiT6yVXeK8whNC990sM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "435948304257-alfmd919rp848tsnr0n7na2ukah0cojs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

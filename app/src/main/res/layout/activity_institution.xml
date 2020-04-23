@@ -7,7 +7,7 @@
     android:background="@color/colorBgGray"
     android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/institutionToolBar"
         style="@style/genericToolBar"
         android:layout_width="match_parent"
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:text="Select your institution"
             android:textAlignment="center" />
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 
     <!-- TODO: change to recyclerview -->
     <ListView

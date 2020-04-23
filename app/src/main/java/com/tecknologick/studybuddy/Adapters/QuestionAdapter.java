@@ -7,10 +7,12 @@ package com.tecknologick.studybuddy.Adapters;
 import android.app.Fragment;
 import android.app.FragmentManager;
 
+import androidx.legacy.app.FragmentStatePagerAdapter;
+
 import com.tecknologick.studybuddy.QuestionContainerFragment;
 
 
-public class QuestionAdapter extends android.support.v13.app.FragmentStatePagerAdapter  {
+public class QuestionAdapter extends FragmentStatePagerAdapter {
 
     private  int NUM_ITEMS;
     private  String questionType;
