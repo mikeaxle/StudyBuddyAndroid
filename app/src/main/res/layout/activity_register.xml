@@ -40,8 +40,8 @@
 
         <ImageView
             android:id="@+id/registerLogoImageView"
-            android:layout_width="200sp"
-            android:layout_height="200sp"
+            android:layout_width="150sp"
+            android:layout_height="150sp"
             android:layout_marginTop="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +52,6 @@
             android:id="@+id/registerEmailTextInputLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/registerLogoImageView">
@@ -94,7 +93,7 @@
                 android:id="@+id/registerConfirmPasswordTextEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/fui_password_hint"
+                android:hint="Confirm Password"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -122,6 +121,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/registerButton" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/registerLoginTextView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

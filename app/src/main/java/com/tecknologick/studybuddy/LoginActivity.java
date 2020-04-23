@@ -60,8 +60,6 @@ public class LoginActivity extends AppCompatActivity {
 
         // set click listener
         registerTextButton.setOnClickListener(click -> {
-            Toast.makeText(this, "go to register screen", Toast.LENGTH_SHORT).show();
-
             // create intent for register activity
             intent = new Intent(this, RegisterActivity.class);
 
