@@ -76,7 +76,6 @@ public class LoginActivity extends AppCompatActivity {
         // get password
         password = editTextPassword.getText().toString().trim();
 
-
         // check validity
         if (isEmailValid(email) & isPasswordValid(password)) {
             // sign in with firebase

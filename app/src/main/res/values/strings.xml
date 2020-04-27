@@ -21,5 +21,6 @@
     <!-- help screen text -->
     <string name="help_text">Get instant help from a real tutor with Brainstein Student! Click the button below</string>
 
+    <string name="privacy_policy_link">By creating an account you agree to our Privacy Policy and Terms of use.</string>
 
 </resources>

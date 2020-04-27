@@ -29,7 +29,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/loginConstraintLayout"
-        android:layout_width="409dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -39,9 +39,8 @@
 
         <ImageView
             android:id="@+id/loginLogoImageView"
-            android:layout_width="200sp"
-            android:layout_height="200sp"
-            android:layout_marginTop="24dp"
+            android:layout_width="150sp"
+            android:layout_height="150sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -51,7 +50,7 @@
             android:id="@+id/loginEmailTextInputLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="64dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/loginLogoImageView">
