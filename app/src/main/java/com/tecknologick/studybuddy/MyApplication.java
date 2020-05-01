@@ -7,8 +7,6 @@ import android.graphics.BitmapFactory;
 import android.util.Base64;
 import android.util.Log;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -63,11 +61,6 @@ public class MyApplication extends Application {
     public void onCreate() {
 
         super.onCreate();
-
-        // Create global configuration and initialize ImageLoader with this config
-        ImageLoaderConfiguration imageLoaderConfig = new ImageLoaderConfiguration.Builder(this)
-			.build();
-        ImageLoader.getInstance().init(imageLoaderConfig);
 
 
         //Set true to overwrite database - Optional

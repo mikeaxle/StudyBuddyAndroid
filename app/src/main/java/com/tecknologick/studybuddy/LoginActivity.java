@@ -69,6 +69,19 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        // check if user is already logged in
+        if (firebaseAuth.getCurrentUser() != null) {
+            // send to main activity
+            Toast.makeText(this, "Logged in as " + firebaseAuth.getCurrentUser().getEmail(), Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, ModuleActivity.class));
+            finish();
+        }
+    }
+
     private void loginUser() {
         // get email
         email = editTextEmail.getText().toString().trim();

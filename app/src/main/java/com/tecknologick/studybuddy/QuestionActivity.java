@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.tecknologick.studybuddy.Adapters.QuestionAdapter;
 import com.tecknologick.studybuddy.Adapters.QuestionViewPager;
 import com.tecknologick.studybuddy.RealmClasses.Course;
+import com.tecknologick.studybuddy.RealmClasses.Module;
 import com.tecknologick.studybuddy.RealmClasses.Paper;
 import com.tecknologick.studybuddy.RealmClasses.Question;
 import com.tecknologick.studybuddy.Transitions.DepthPageTransformer;
@@ -29,6 +30,7 @@ public class QuestionActivity extends AppCompatActivity implements QuestionViewP
     RealmResults<Course> course;
     Realm realm;
     Paper paper;
+    Module module;
     RealmList<Question> questions;
     int[] courseID_moduleID_paperID;
     int correct = 0;
@@ -62,8 +64,11 @@ public class QuestionActivity extends AppCompatActivity implements QuestionViewP
                     .equalTo("id", courseID_moduleID_paperID[0])
                     .findAll();
 
+            // get module
+            module = course.get(0).modules.where().equalTo("id",courseID_moduleID_paperID[1]).findFirst();
+
             //get current paper
-            paper  =  course.get(0).modules.where().equalTo("id",courseID_moduleID_paperID[1]).findFirst().papers.where().equalTo("id", courseID_moduleID_paperID[2]).findFirst();
+            paper  =  module.papers.where().equalTo("id", courseID_moduleID_paperID[2]).findFirst();
 
             //get questions using global currentSection object
             currentSection = ((MyApplication) getApplicationContext()).getCurrentSection();

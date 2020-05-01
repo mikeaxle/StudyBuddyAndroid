@@ -6,10 +6,13 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Fragment;
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
@@ -20,28 +23,40 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.chrisbanes.photoview.PhotoView;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.model.value.ServerTimestampValue;
 import com.tecknologick.studybuddy.Adapters.UlTagHandler;
 import com.tecknologick.studybuddy.RealmClasses.Question;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 
 public class EssayQuestionFragment extends Fragment {
 
+    private final String TAG = "Essay Question";
     // Hold a reference to the current animator, so that it can be canceled mid-way.
     private Animator mCurrentAnimator;
 
     // The system "short" animation time duration, in milliseconds.
     // This duration is ideal for subtle animations or animations that occur very frequently.
     private int mShortAnimationDuration;
+
+    // firebase authentication
+    private FirebaseAuth firebaseAuth;
+
+    // firestore instance
+    private FirebaseFirestore firestore;
 
     //variable to store fragment value
     int fragNum;
@@ -54,10 +69,12 @@ public class EssayQuestionFragment extends Fragment {
     ImageButton essayQuestionImageView;
     ImageButton seeAnswerButton;
     ImageButton readAloudButton;
+    ImageButton requestTutor;
     TextToSpeech textToSpeech;
     boolean readingFlag = false;
     View view;
     Bitmap bitmap = null;
+    Bitmap bitmapTemp = null;
 
     // create new instance of fragment using num as argument
     public static EssayQuestionFragment newInstance(int num){
@@ -84,6 +101,12 @@ public class EssayQuestionFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // init firebase auth
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        // init firestore
+        firestore = FirebaseFirestore.getInstance();
+
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_essay_question, container, false);
 
@@ -128,30 +151,36 @@ public class EssayQuestionFragment extends Fragment {
             //get image view
             essayQuestionImageView = (ImageButton) view.findViewById(R.id.essayQuestionImageView);
 
-            // declare bitmap
-            Bitmap bitmapTemp = null;
+
 
 //            // check if questionImage is url, starts with 'http'
             String compare = question.questionImage.toString().substring(0, 4);
             if (compare.equals("http")) {
                 // convert url to bitmap
-
-                ImageLoader imageLoader = ImageLoader.getInstance();
-
+                String questionImageString = question.questionImage + "";
                 // TODO: put in async thread
+                new GetImageFromUrl(essayQuestionImageView).execute(questionImageString);
+//                try {
+//                    new Thread(new Thread(() -> {
+//                        bitmapTemp = imageLoader.loadImageSync(questionImageString);
+//                    })).start();
+//                } catch (Exception e) {
+//                    Log.e(TAG, e.getMessage());
+//                }
 
-                bitmapTemp = imageLoader.loadImageSync(question.questionImage);
+
 
             } else {
                 //convert base64 string to bitmap
                 Log.d(MyApplication.TAG, "image is BASE64");
-                bitmapTemp = MyApplication.Base64ToBitmap(question.questionImage);
+                bitmap = MyApplication.Base64ToBitmap(question.questionImage);
+                essayQuestionImageView.setImageBitmap(bitmap);
             }
 
-            bitmap = bitmapTemp;
+//            bitmap = bitmapTemp;
 
             //set image
-            essayQuestionImageView.setImageBitmap(bitmap);
+
 
             //make visible
             essayQuestionImageView.setVisibility(View.VISIBLE);
@@ -179,6 +208,7 @@ public class EssayQuestionFragment extends Fragment {
         //get image buttons
         seeAnswerButton = (ImageButton) view.findViewById(R.id.seeAnswerImageButton);
         readAloudButton = (ImageButton) view.findViewById(R.id.readAloudQuestionImageButton);
+        requestTutor = view.findViewById(R.id.questionETutorImageButton);
 
         //utterance id string hash map, required for utterance listeners to work
         final HashMap<String, String> params= new HashMap<String,String>();
@@ -202,26 +232,20 @@ public class EssayQuestionFragment extends Fragment {
                         @Override
                         public void onStart(String utteranceId) {
                             //change read aloud button image
-                            getActivity().runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    //change button & text color
-                                    readAloudButton.setColorFilter(getResources().getColor(R.color.colorBgGray), PorterDuff.Mode.SRC_IN);
-                                    readAloudQuestionLabel.setTextColor(getResources().getColor(R.color.colorBgGray));
-                                }
+                            getActivity().runOnUiThread(() -> {
+                                //change button & text color
+                                readAloudButton.setColorFilter(getResources().getColor(R.color.colorBgGray), PorterDuff.Mode.SRC_IN);
+                                readAloudQuestionLabel.setTextColor(getResources().getColor(R.color.colorBgGray));
                             });
                         }
 
                         @Override
                         public void onDone(String utteranceId) {
                             //change read aloud button image
-                            getActivity().runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    //change button & text color
-                                    readAloudButton.setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
-                                    readAloudQuestionLabel.setTextColor(getResources().getColor(R.color.colorPrimary));
-                                }
+                            getActivity().runOnUiThread(() -> {
+                                //change button & text color
+                                readAloudButton.setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
+                                readAloudQuestionLabel.setTextColor(getResources().getColor(R.color.colorPrimary));
                             });
                         }
 
@@ -240,55 +264,84 @@ public class EssayQuestionFragment extends Fragment {
         });
 
         //set button click listeners
-        readAloudButton.setOnClickListener(new View.OnClickListener() {
+        readAloudButton.setOnClickListener(v -> {
+            //read question aloud
 
+            if(readingFlag){
 
-            public void onClick(View v) {
-                //read question aloud
+                textToSpeech.stop();
+                readingFlag = false;
 
-                if(readingFlag){
+            } else {
 
-                    textToSpeech.stop();
-                    readingFlag = false;
+                //remove html tags from text
+                String readableText = Html.fromHtml(question.question).toString();
 
-                } else {
+                //check if question 2 is set
+                if(question.question2 != null && !question.question2.equals("")){
 
-                    //remove html tags from text
-                    String readableText = android.text.Html.fromHtml(question.question).toString();
-
-                    //check if question 2 is set
-                    if(question.question2 != null && !question.question2.equals("")){
-
-                        //concat with question 1
-                        readableText += android.text.Html.fromHtml("." + question.question2).toString();
-                    }
-
-                    //read aloud
-                    textToSpeech.speak(readableText, TextToSpeech.QUEUE_FLUSH, params);
-
-
-                    readingFlag = true;
-
+                    //concat with question 1
+                    readableText += Html.fromHtml("." + question.question2).toString();
                 }
 
+                //read aloud
+                textToSpeech.speak(readableText, TextToSpeech.QUEUE_FLUSH, params);
+
+
+                readingFlag = true;
+
+            }
+
+        });
+
+        seeAnswerButton.setOnClickListener(v -> {
+            // Perform action on click
+            QuestionContainerFragment questionFragment = (QuestionContainerFragment)getParentFragment();            //get instance of parent fragment
+
+            //call flipCard function of parent fragment
+            if (question.answerImage != null){
+
+                //check if answer has an image
+                questionFragment.flipCard(question.answer, question.question, question.answerImage);
+
+            } else {
+                questionFragment.flipCard(question.answer, question.question, null);
             }
         });
 
-        seeAnswerButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // Perform action on click
-                QuestionContainerFragment questionFragment = (QuestionContainerFragment)getParentFragment();            //get instance of parent fragment
+        // set request tutor click listener
+        requestTutor.setOnClickListener(v -> {
+//            Toast.makeText(questionActivity, "Request tutor", Toast.LENGTH_SHORT).show();
 
-                //call flipCard function of parent fragment
-                if (question.answerImage != null){
+            // if question has image
+            if (question.questionImage != null && !question.questionImage.equals("")) {
 
-                    //check if answer has an image
-                    questionFragment.flipCard(question.answer, question.question, question.answerImage);
-
-                } else {
-                    questionFragment.flipCard(question.answer, question.question, null);
-                }
             }
+
+            // create question payload
+            Map<String, Object> tutorQuestion = new HashMap<>();
+            tutorQuestion.put("caption", question.question + "\n" + question.question2);
+            tutorQuestion.put("createdAt", com.google.firebase.firestore.FieldValue.serverTimestamp());
+            tutorQuestion.put("grade", 12);
+            tutorQuestion.put("inSession", false);
+            tutorQuestion.put("payload", null);
+            tutorQuestion.put("subject", questionActivity.module.name);
+            tutorQuestion.put("userId", firebaseAuth.getUid());
+
+            Log.d(TAG, tutorQuestion.toString());
+
+            // write to firestore
+            firestore.collection("Questions").add(tutorQuestion)
+                    .addOnCompleteListener(task -> {
+                       if (task.isSuccessful()) {
+                           Toast.makeText(questionActivity, "Question has been added to brainstein papers", Toast.LENGTH_SHORT).show();
+                           Log.d(TAG, "Question has been added to brainstein papers");
+                       } else {
+                           Toast.makeText(questionActivity, "Something went wrong: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                           Log.d(TAG, "Something went wrong: " + task.getException().getMessage());
+                       }
+                    });
+
         });
 
         return view;
@@ -445,13 +498,44 @@ public class EssayQuestionFragment extends Fragment {
     @Override
     public void onDestroy() {
 
-        if(textToSpeech != null){
+        if (textToSpeech != null) {
             textToSpeech.stop();
             textToSpeech.shutdown();
             textToSpeech = null;
         }
 
         super.onDestroy();
+    }
+
+    // temp inner class to load images from url
+    public class GetImageFromUrl extends AsyncTask<String, Void, Bitmap> {
+        // internal image view
+        ImageView imageView;
+
+        // constructor
+        GetImageFromUrl(ImageView img) {
+            this.imageView = img;
+        }
+
+        @Override
+        protected Bitmap doInBackground(String... url) {
+            String stringUrl = url[0];
+            bitmap = null;
+            InputStream inputStream;
+            try {
+                inputStream = new URL(stringUrl).openStream();
+                bitmap = BitmapFactory.decodeStream(inputStream);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return bitmap;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap){
+            super.onPostExecute(bitmap);
+            imageView.setImageBitmap(bitmap);
+        }
     }
 
 }

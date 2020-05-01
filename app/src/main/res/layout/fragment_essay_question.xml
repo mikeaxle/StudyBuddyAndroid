@@ -1,5 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/essayQuestionContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,14 +13,36 @@
         android:layout_height="match_parent"
         android:visibility="gone" />
 
-    <TextView
-        android:id="@+id/essayQuestionNumberLabel"
-        style="@style/titleText"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@drawable/question_title_background"
-        android:gravity="center_vertical|center_horizontal"
-        android:text="Question 1 of 5" />
+        android:layout_height="wrap_content"
+        android:background="@drawable/question_title_background">
+
+        <TextView
+            android:id="@+id/essayQuestionNumberLabel"
+            style="@style/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="@color/fui_transparent"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="Question 1 of 5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/questionETutorImageButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/questionETutorImageButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="10dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="request tutor"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_report" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
         android:layout_width="match_parent"
