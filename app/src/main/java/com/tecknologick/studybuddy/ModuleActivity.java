@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -125,9 +126,6 @@ public class ModuleActivity extends AppCompatActivity {
 
     // go to brainstein papers
     public void openBrainsteinStudent(View view) {
-        Intent launchIntent = getPackageManager().getLaunchIntentForPackage("co.brainstein.student");
-        if (launchIntent != null) {
-            startActivity(launchIntent);//null pointer check in case package name was not found
-        }
+        MyApplication.gotoBrainsteinApp(this);
     }
 }

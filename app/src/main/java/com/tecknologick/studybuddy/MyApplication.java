@@ -2,8 +2,12 @@ package com.tecknologick.studybuddy;
 
 import android.animation.Animator;
 import android.app.Application;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.util.Base64;
 import android.util.Log;
 
@@ -30,6 +34,9 @@ public class MyApplication extends Application {
     public static String TAG = "studybuddy";                           //Log tag
     private boolean hasNextSection;                             //bool to check if paper has an additional section
     private int currentSection;                                 //index of current section being viewed in paper
+
+    public static String BRAINSTEIN_STUDENT_APP = "co.brainstein.student";          // package name for brainstein student
+    public static String BRAINSTEIN_PWA = "https://brainstein-temp.web.app/";           // url for brainstein PWA
 
 
     // Hold a reference to the current animator, so that it can be canceled mid-way.
@@ -150,18 +157,32 @@ public class MyApplication extends Application {
         return BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
     }
 
-    // function to covert string url to bitmap
-//    public static Bitmap ulrToBitmap (String url)
-//    {
-//        Bitmap bitmap = null;
-//        try {
-//            URL imageUrl = new URL(url);
-//            bitmap = BitmapFactory.decodeStream(imageUrl.openConnection().getInputStream());
-//        } catch (IOException e) {
-//            Log.e(TAG, "error: " + e.getMessage());
-//        }
-//        return bitmap;
-//    }
+    /**
+     *  function to check if package / app is installed and enable it if it is
+     * @param packageName
+     * @param packageManager
+     * @return
+     */
+    public static boolean isPackageInstalled(String packageName, PackageManager packageManager) {
+        try {
+            return packageManager.getApplicationInfo(packageName, 0).enabled;
+        }
+        catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
+    }
+
+    /**
+     * function to open brainstein tutor app or PWA
+     * @param context
+     */
+    public static void gotoBrainsteinApp (Context context) {
+        if (isPackageInstalled(BRAINSTEIN_STUDENT_APP,context.getPackageManager())) {
+            context.startActivity(new Intent(context.getPackageManager().getLaunchIntentForPackage(BRAINSTEIN_STUDENT_APP)));
+        } else {
+            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(BRAINSTEIN_PWA)));
+        }
+    }
 
 
 }
