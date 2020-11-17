@@ -332,7 +332,13 @@ public class EssayQuestionFragment extends Fragment {
                 Map<String, Object> data = new HashMap<>();
 
                 // add download URL to data object
-                data.put("downloadURL", question.questionImage);
+                String compare = question.questionImage.toString().substring(0, 4);
+                if (compare.equals("http")) {
+                    data.put("downloadURL", question.questionImage);
+                } else {
+                    data.put("downloadURL", null);
+                }
+
 
                 // add data object to payload
                 payload.put("data", data);
